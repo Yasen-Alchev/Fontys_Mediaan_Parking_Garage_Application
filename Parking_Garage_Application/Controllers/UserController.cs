@@ -1,6 +1,7 @@
 ﻿using DataAccess.Contracts;
 using DataModels.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Service.Contracts;
 
 namespace Parking_Garage_Application.Controllers;
 
@@ -8,11 +9,11 @@ namespace Parking_Garage_Application.Controllers;
 [Route("api/[controller]")]
 public class UserController : ControllerBase
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IUserService _userService;
 
-    public UserController(IUserRepository userRepository)
+    public UserController(IUserService userService)
     {
-        _userRepository = userRepository;
+        _userService = userService;
     }
 
     [HttpGet]
@@ -20,7 +21,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            var users = await _userRepository.GetUsers();
+            var users = await _userService.GetUsers();
             return Ok(users);
         }
         catch (Exception ex)
@@ -34,7 +35,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            var user = await _userRepository.GetUser(id);
+            var user = await _userService.GetUser(id);
             if (user == null)
                 return NotFound();
             return Ok(user);
@@ -50,7 +51,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            var createdUser= await _userRepository.CreateUser(user);
+            var createdUser = await _userService.CreateUser(user);
             //return the URL to access it
             return CreatedAtRoute("UserById", new { id = createdUser.Id }, createdUser);
         }
@@ -65,10 +66,10 @@ public class UserController : ControllerBase
     {
         try
         {
-            var dbUser = await _userRepository.GetUser(id);
+            var dbUser = await _userService.GetUser(id);
             if (dbUser == null)
                 return NotFound();
-            await _userRepository.UpdateUser(id, user);
+            await _userService.UpdateUser(id, user);
             return NoContent();
         }
         catch (Exception ex)
@@ -81,10 +82,10 @@ public class UserController : ControllerBase
     {
         try
         {
-            var dbUser = await _userRepository.GetUser(id);
+            var dbUser = await _userService.GetUser(id);
             if (dbUser == null)
                 return NotFound();
-            await _userRepository.DeleteUser(id);
+            await _userService.DeleteUser(id);
             return NoContent();
         }
         catch (Exception ex)

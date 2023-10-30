@@ -1,6 +1,8 @@
 using DataAccess.Context;
 using DataAccess.Contracts;
 using DataAccess.Repository;
+using Service;
+using Service.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddControllers();
 
 var app = builder.Build();

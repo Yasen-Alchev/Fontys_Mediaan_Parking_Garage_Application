@@ -71,7 +71,7 @@ namespace DataAccess.Repository
             }
         }
 
-        public async Task UpdateUser(int id, UpdateUserDTO user)
+        public async Task<bool> UpdateUser(int id, UpdateUserDTO user)
         {
             var query = "UPDATE User " +
                 "SET name = @Name, " +
@@ -91,16 +91,18 @@ namespace DataAccess.Repository
 
             using (var connection = _context.CreateConnection())
             {
-                await connection.ExecuteAsync(query, parameters);
+                var affectedRows = await connection.ExecuteAsync(query, parameters);
+                return affectedRows > 0;
             }
         }
 
-        public async Task DeleteUser(int id)
+        public async Task<bool> DeleteUser(int id)
         {
             var query = "DELETE FROM User WHERE Id = @Id";
             using (var connection = _context.CreateConnection())
             {
-                await connection.ExecuteAsync(query, new { id });
+                var affectedRows = await connection.ExecuteAsync(query, new { id });
+                return affectedRows > 0;
             }
         }
 

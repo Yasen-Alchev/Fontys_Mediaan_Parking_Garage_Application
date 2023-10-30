@@ -1,19 +1,19 @@
-﻿using System;
+﻿using DataModels.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataModels.DTO;
-using DataModels.Entities;
 
-namespace DataAccess.Contracts
+namespace Service.Contracts
 {
-    public interface IUserRepository
+    public interface IUserService
     {
         public Task<IEnumerable<User>> GetUsers();
         public Task<User> GetUser(int id);
         public Task<User> CreateUser(CreateUserDTO user);
-        public Task<bool> UpdateUser(int id, UpdateUserDTO user);
-        public Task<bool> DeleteUser(int id);
+        public Task UpdateUser(int id, UpdateUserDTO user);
+        public Task DeleteUser(int id);
     }
 }
