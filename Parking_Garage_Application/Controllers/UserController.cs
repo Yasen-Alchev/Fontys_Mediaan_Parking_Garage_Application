@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Parking_Garage_Application.Contracts;
-using Parking_Garage_Application.DTO;
+﻿using DataAccess.Contracts;
+using DataModels.DTO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Parking_Garage_Application.Controllers;
 

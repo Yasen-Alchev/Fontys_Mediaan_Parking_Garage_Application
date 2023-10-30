@@ -1,6 +1,6 @@
-using Parking_Garage_Application.Context;
-using Parking_Garage_Application.Contracts;
-using Parking_Garage_Application.Repository;
+using DataAccess.Context;
+using DataAccess.Contracts;
+using DataAccess.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
