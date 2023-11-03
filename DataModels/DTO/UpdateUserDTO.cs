@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace DataModels.DTO;
 
-namespace DataModels.DTO
+public class UpdateUserDTO
 {
-    public class UpdateUserDTO
+    public UpdateUserDTO(string name, string email, int role)
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public int Age { get; set; }
-        public int Role { get; set; }
+        Name = name;
+        Email = email;
+        Role = role;
     }
+
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public int Role { get; set; }
 }

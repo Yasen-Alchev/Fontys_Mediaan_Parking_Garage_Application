@@ -24,11 +24,6 @@ export class NavMenu extends Component {
     });
   }
 
-    componentDidMount() {
-        const { user } = this.context;
-        console.log("User Data from Context NAVmenu:", user);
-    }
-
     render() {
         const { user } = this.context;
 

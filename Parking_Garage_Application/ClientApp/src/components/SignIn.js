@@ -2,25 +2,39 @@ import { useEffect, useState, useContext } from 'react';
 import { jwtDecode } from "jwt-decode";
 import { UserContext } from '../contexts/UserContext';
 
-/*import { UserService } from "../../../../Service/Contracts"
-import { CreateUserDTO } from "../../../../DataModels/DTO"*/
-
-
 export default function SignIn() {
     const { user, setUser } = useContext(UserContext);
 
-    useEffect(() => {
-        console.log('User data has changed: ', user);
-    }, [user]);
-
     function handleCallbackResponse(response) {
         var userObject = jwtDecode(response.credential);
-        setUser(userObject);
- 
         document.getElementById("signInDiv").hidden = true;
 
-/*        const userDTO = new CreateUserDTO("name", "email@gmail.com", "strongpassword123", 33, 1);
-        UserService.CreateUser(userDTO);*/
+        setUser(userObject);
+
+        const userDTO = {
+            name: userObject.name,
+            email: userObject.email,
+            role: 0
+        };
+
+        fetch('api/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userDTO),
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('User data has been sent to the backend.');
+                } else {
+                    console.error('Failed to send user data to the backend.');
+                }
+            })
+            .catch(error => {
+                console.error('An error occurred while sending user data.');
+            });
+
     }
 
     function handleSignOut(event) {
