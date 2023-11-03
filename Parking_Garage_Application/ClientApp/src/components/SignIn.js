@@ -1,13 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { jwtDecode } from "jwt-decode";
+import { UserContext } from '../contexts/UserContext';
+
+/*import { UserService } from "../../../../Service/Contracts"
+import { CreateUserDTO } from "../../../../DataModels/DTO"*/
+
 
 export default function SignIn() {
-    const [user, setUser] = useState({});
+    const { user, setUser } = useContext(UserContext);
+
+    useEffect(() => {
+        console.log('User data has changed: ', user);
+    }, [user]);
 
     function handleCallbackResponse(response) {
         var userObject = jwtDecode(response.credential);
         setUser(userObject);
+ 
         document.getElementById("signInDiv").hidden = true;
+
+/*        const userDTO = new CreateUserDTO("name", "email@gmail.com", "strongpassword123", 33, 1);
+        UserService.CreateUser(userDTO);*/
     }
 
     function handleSignOut(event) {

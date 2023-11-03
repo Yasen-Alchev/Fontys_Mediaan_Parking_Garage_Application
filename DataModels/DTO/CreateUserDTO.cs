@@ -8,6 +8,15 @@ namespace DataModels.DTO
 {
     public class CreateUserDTO
     {
+        public CreateUserDTO(string name, string email, string password, int age, int role)
+        {
+            this.Name = name;
+            this.Email = email;
+            this.Password = password;
+            this.Age = age;
+            this.Role = role;
+        }
+
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

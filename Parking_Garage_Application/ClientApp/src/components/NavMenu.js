@@ -3,9 +3,11 @@ import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from '
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 import SignIn from './SignIn';
+import { UserContext } from '../contexts/UserContext';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
+    static contextType = UserContext;
 
   constructor (props) {
     super(props);
@@ -22,7 +24,14 @@ export class NavMenu extends Component {
     });
   }
 
-  render() {
+    componentDidMount() {
+        const { user } = this.context;
+        console.log("User Data from Context NAVmenu:", user);
+    }
+
+    render() {
+        const { user } = this.context;
+
     return (
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
@@ -33,12 +42,18 @@ export class NavMenu extends Component {
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-              </NavItem>
-              <NavItem>
-                <SignIn></SignIn>
-              </NavItem>
+                        {user && Object.keys(user).length ?
+                            <NavItem>
+                                <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
+                            </NavItem>
+                            :
+                            <div></div>
+                        }
+                        {user && (
+                            <NavItem>
+                                <SignIn></SignIn>
+                            </NavItem>
+                        )}
             </ul>
           </Collapse>
         </Navbar>
