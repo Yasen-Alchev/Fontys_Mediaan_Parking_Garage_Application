@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "react-router-dom": "^6.18.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^1.0.5"
+  }
+}

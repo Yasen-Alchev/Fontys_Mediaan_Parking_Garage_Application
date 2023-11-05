@@ -85,6 +85,22 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.Google/6.0.24": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.Extensions.Configuration/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -719,6 +735,9 @@
       "DataModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Google": "6.0.24"
+        },
         "compile": {
           "bin/placeholder/DataModels.dll": {}
         },
@@ -852,6 +871,21 @@
         "lib/netstandard2.0/K4os.Hash.xxHash.xml",
         "lib/netstandard2.1/K4os.Hash.xxHash.dll",
         "lib/netstandard2.1/K4os.Hash.xxHash.xml"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Google/6.0.24": {
+      "sha512": "VzzuedAC16uAKQk2cFWHOYomQaxDf/cePjKfGr2O6JYCqoa85XDP0W466SDeTY2ytojTE8ZvG2tQcV4HV69pSA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.google/6.0.24",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.xml",
+        "microsoft.aspnetcore.authentication.google.6.0.24.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.google.nuspec"
       ]
     },
     "Microsoft.Extensions.Configuration/7.0.0": {
@@ -2215,6 +2249,7 @@
     "net6.0": [
       "Dapper >= 2.1.15",
       "DataModels >= 1.0.0",
+      "Microsoft.AspNetCore.Authentication.Google >= 6.0.24",
       "Microsoft.Extensions.Configuration >= 7.0.0",
       "Microsoft.Extensions.Configuration.Abstractions >= 7.0.0",
       "Microsoft.Extensions.Configuration.Json >= 7.0.0",
@@ -2222,24 +2257,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Noth\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Camil\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Noth\\Projects\\Fontys\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\Camil\\Documents\\GitHub\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\Noth\\Projects\\Fontys\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
-      "packagesPath": "C:\\Users\\Noth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Noth\\Projects\\Fontys\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\obj\\",
+      "projectPath": "C:\\Users\\Camil\\Documents\\GitHub\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
+      "packagesPath": "C:\\Users\\Camil\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Camil\\Documents\\GitHub\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Noth\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Camil\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2247,15 +2277,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Noth\\Projects\\Fontys\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
-              "projectPath": "C:\\Users\\Noth\\Projects\\Fontys\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
+            "C:\\Users\\Camil\\Documents\\GitHub\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
+              "projectPath": "C:\\Users\\Camil\\Documents\\GitHub\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
             }
           }
         }
@@ -2273,6 +2302,10 @@
           "Dapper": {
             "target": "Package",
             "version": "[2.1.15, )"
+          },
+          "Microsoft.AspNetCore.Authentication.Google": {
+            "target": "Package",
+            "version": "[6.0.24, )"
           },
           "Microsoft.Extensions.Configuration": {
             "target": "Package",
@@ -2307,7 +2340,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
