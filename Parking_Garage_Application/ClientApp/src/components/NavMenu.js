@@ -26,8 +26,6 @@ export class NavMenu extends Component {
 
     render() {
         const { user } = this.context;
-        console.log("NavMenu: user: ");
-        console.log(user);
 
     return (
       <header>
