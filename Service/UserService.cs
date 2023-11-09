@@ -49,6 +49,8 @@ namespace Service
 
         public async Task<User> CreateUser(CreateUserDTO user)
         {
+            if (user == null) throw new ArgumentNullException(nameof(user), "Missing user");
+
             try
             {
                 var createdUser = await _userRepository.CreateUser(user);
@@ -63,9 +65,12 @@ namespace Service
 
         public async Task UpdateUser(int id, UpdateUserDTO user)
         {
+            if (user == null)
+                throw new ArgumentNullException(nameof(user), "Invalid data was provided to update user.");
             try
             {
                 var isSuccessfullyUpdated = await _userRepository.UpdateUser(id, user);
+                if (!isSuccessfullyUpdated) throw new ArgumentException("User with a following id was not found.");
             }
             catch (Exception ex)
             {
