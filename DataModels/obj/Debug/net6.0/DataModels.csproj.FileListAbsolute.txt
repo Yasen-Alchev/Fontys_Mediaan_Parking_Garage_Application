@@ -13,7 +13,6 @@ C:\Users\Noth\Projects\Fontys\Fontys_Mediaan_Parking_Garage_Application\DataMode
 D:\Fontys\Sem3\Fontys_Mediaan_Parking_Garage_Application\DataModels\bin\Debug\net6.0\DataModels.deps.json
 D:\Fontys\Sem3\Fontys_Mediaan_Parking_Garage_Application\DataModels\bin\Debug\net6.0\DataModels.dll
 D:\Fontys\Sem3\Fontys_Mediaan_Parking_Garage_Application\DataModels\bin\Debug\net6.0\DataModels.pdb
-D:\Fontys\Sem3\Fontys_Mediaan_Parking_Garage_Application\DataModels\obj\Debug\net6.0\DataModels.csproj.AssemblyReference.cache
 D:\Fontys\Sem3\Fontys_Mediaan_Parking_Garage_Application\DataModels\obj\Debug\net6.0\DataModels.GeneratedMSBuildEditorConfig.editorconfig
 D:\Fontys\Sem3\Fontys_Mediaan_Parking_Garage_Application\DataModels\obj\Debug\net6.0\DataModels.AssemblyInfoInputs.cache
 D:\Fontys\Sem3\Fontys_Mediaan_Parking_Garage_Application\DataModels\obj\Debug\net6.0\DataModels.AssemblyInfo.cs

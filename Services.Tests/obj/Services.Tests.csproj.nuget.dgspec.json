@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj": {}
+    "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj": {}
   },
   "projects": {
     "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj": {
@@ -120,6 +120,94 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj",
+        "projectName": "Services.Tests",
+        "projectPath": "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj",
+        "packagesPath": "C:\\Users\\yasen\\.nuget\\packages\\",
+        "outputPath": "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\yasen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
+                "projectPath": "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
+              },
+              "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj": {
+                "projectPath": "D:\\Fontys\\Sem3\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Autofac.Extras.Moq": {
+              "target": "Package",
+              "version": "[6.1.1, )"
+            },
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[2.2.10, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.2.10, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.5.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.69, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

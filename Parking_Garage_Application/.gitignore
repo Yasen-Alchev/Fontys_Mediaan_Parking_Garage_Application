@@ -469,40 +469,6 @@ _Pvt_Extensions
 **/obj/
 **/bin/
 
-# Ignore specific files in the project
-DataAccess/obj/DataAccess.csproj.nuget.dgspec.json
-DataAccess/obj/DataAccess.csproj.nuget.g.props
-DataAccess/obj/DataAccess.csproj.nuget.g.targets
-DataAccess/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
-DataAccess/obj/Debug/net6.0/DataAccess.AssemblyInfo.cs
-DataAccess/obj/Debug/net6.0/DataAccess.GeneratedMSBuildEditorConfig.editorconfig
-DataAccess/obj/Debug/net6.0/DataAccess.GlobalUsings.g.cs
-DataAccess/obj/Debug/net6.0/DataAccess.csproj.BuildWithSkipAnalyzers
-DataAccess/obj/Debug/net6.0/DataAccess.csproj.CopyComplete
-DataAccess/obj/Debug/net6.0/DataAccess.csproj.FileListAbsolute.txt
-DataAccess/obj/project.assets.json
-DataModels/obj/DataModels.csproj.nuget.dgspec.json
-DataModels/obj/DataModels.csproj.nuget.g.props
-DataModels/obj/DataModels.csproj.nuget.g.targets
-DataModels/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
-DataModels/obj/Debug/net6.0/DataModels.AssemblyInfo.cs
-DataModels/obj/Debug/net6.0/DataModels.GeneratedMSBuildEditorConfig.editorconfig
-DataModels/obj/Debug/net6.0/DataModels.GlobalUsings.g.cs
-DataModels/obj/Debug/net6.0/DataModels.csproj.BuildWithSkipAnalyzers
-DataModels/obj/Debug/net6.0/DataModels.csproj.FileListAbsolute.txt
-DataModels/obj/project.assets.json
-Service/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
-Service/obj/Debug/net6.0/Service.AssemblyInfo.cs
-Service/obj/Debug/net6.0/Service.GeneratedMSBuildEditorConfig.editorconfig
-Service/obj/Debug/net6.0/Service.GlobalUsings.g.cs
-Service/obj/Debug/net6.0/Service.csproj.BuildWithSkipAnalyzers
-Service/obj/Debug/net6.0/Service.csproj.CopyComplete
-Service/obj/Debug/net6.0/Service.csproj.FileListAbsolute.txt
-Service/obj/Service.csproj.nuget.dgspec.json
-Service/obj/Service.csproj.nuget.g.props
-Service/obj/Service.csproj.nuget.g.targets
-Service/obj/project.assets.json
-
 # Ignore newly generated files
 **/bin/**/*.xml
 **/obj/**/*.xml

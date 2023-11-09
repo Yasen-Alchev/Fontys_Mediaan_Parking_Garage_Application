@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { jwtDecode } from "jwt-decode";
 import { UserContext } from '../contexts/UserContext';
+import Cookies from 'universal-cookie';
 
 export default function SignIn() {
     const { user, setUser } = useContext(UserContext);
@@ -11,9 +12,13 @@ export default function SignIn() {
 
         setUser(userObject);
 
+        const cookies = new Cookies();
+        cookies.set('GoogleJWTToken', userObject, { path: '/', secure: true});
+
         const userDTO = {
             name: userObject.name,
             email: userObject.email,
+            picture: userObject.picture,
             role: 0
         };
 
@@ -34,11 +39,12 @@ export default function SignIn() {
             .catch(error => {
                 console.error('An error occurred while sending user data.');
             });
-
     }
 
     function handleSignOut(event) {
         setUser({});
+        const cookies = new Cookies();
+        cookies.remove('GoogleJWTToken');
         document.getElementById("signInDiv").hidden = false;
     }
 
@@ -53,7 +59,14 @@ export default function SignIn() {
             document.getElementById("signInDiv"),
             { theme: "outline", size: "large" }
         )
-    }, [])
+
+        console.log("singin.js user: ");
+        console.log(user);
+        if (Object.keys(user).length > 0) {
+            document.getElementById("signInDiv").hidden = true;
+        }
+
+    }, [user])
 
     return (
         <div className="App">
