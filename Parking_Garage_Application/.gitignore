@@ -180,7 +180,6 @@ ClientBin/
 *.publishsettings
 orleans.codegen.cs
 
-/node_modules
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -472,3 +471,26 @@ _Pvt_Extensions
 # Ignore newly generated files
 **/bin/**/*.xml
 **/obj/**/*.xml
+
+# Ignore obj directories
+**/obj/
+
+# Ignore .nuget.dgspec.json files
+**/*.nuget.dgspec.json
+
+# Ignore .GeneratedMSBuildEditorConfig.editorconfig files
+**/*.GeneratedMSBuildEditorConfig.editorconfig
+
+# Ignore .csproj.FileListAbsolute.txt files
+**/*.csproj.FileListAbsolute.txt
+
+# Ignore project.assets.json files
+**/project.assets.json
+
+# Ignore specific files
+Parking_Garage_Application/ClientApp/package-lock.json
+Parking_Garage_Application/ClientApp/package.json
+
+# Ignore CoverletSourceRootsMapping file
+Services.Tests/bin/Debug/net6.0/CoverletSourceRootsMapping
+
