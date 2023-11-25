@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useContext, useState } from 'react';
+import './Styles/styles.css';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import { Layout } from './components/Layout';
@@ -7,6 +8,7 @@ import { UserContext } from './contexts/UserContext';
 import { Home } from "./components/Home";
 import { Counter } from "./components/Counter";
 import { PrivateRoute } from "./components/PrivateRoute";
+import { ControlGate } from "./components/ControlGate";
 
 function LoadingIndicator() {
     return (

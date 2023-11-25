@@ -1,3 +1,4 @@
+import ControlGate from "./components/ControlGate";
 import { Counter } from "./components/Counter";
 import { Home } from "./components/Home";
 
@@ -9,6 +10,10 @@ const AppRoutes = [
   {
     path: '/counter',
     element: <Counter />
+  },
+  {
+    path: '/controlGate',
+    element: <ControlGate />
   }
 ];
 
