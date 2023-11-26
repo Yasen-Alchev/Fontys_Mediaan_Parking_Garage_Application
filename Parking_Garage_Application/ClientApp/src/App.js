@@ -26,20 +26,49 @@ function App() {
         const cookies = new Cookies();
         const token = cookies.get('GoogleJWTToken');
 
+        const fetchUserData = async () => {
+            try {
+                const response = await fetch('api/user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: token.name,
+                        email: token.email,
+                        picture: token.picture,
+                        role: 0
+                    }),
+                });
+
+                if (response.ok) {
+                    const userData = await response.json();
+
+                    // Merge data from token and server response
+                    const mergedUserData = {
+                        ...token,  // data from the token
+                        ...userData  // data from the server response
+                    };
+
+                    setUser(mergedUserData);
+                } else {
+                    console.error('Failed to fetch user data.');
+                }
+            } catch (error) {
+                console.error('An error occurred while fetching user data.', error);
+            } finally {
+                setInitialized(true);
+            }
+        };
+
         if (token) {
-            const userDTO = {
-                name: token.name,
-                email: token.email,
-                picture: token.picture,
-                role: 0
-            };
-            setUser(userDTO);
-            setInitialized(true);
-      
+            // If the user is logged in, fetch additional data
+            fetchUserData();
         } else {
             setInitialized(true);
         }
-    }, [setUser]);
+    }, [setUser, setInitialized]);
+
 
     if (!initialized) {
         return <LoadingIndicator />;
@@ -50,12 +79,12 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 {Object.keys(user).length > 0 ? (
-                    // Render all router is the user is logged in
+                    // Render all routes if the user is logged in
                     AppRoutes.map((route, index) => (
                         <Route key={index} {...route} />
                     ))
                 ) : (
-                    // Redirect to home is user is not logged in
+                    // Redirect to home if the user is not logged in
                     <Route path="*" element={<Navigate to="/" />} />
                 )}
             </Routes>

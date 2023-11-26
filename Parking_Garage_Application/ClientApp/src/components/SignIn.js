@@ -10,10 +10,8 @@ export default function SignIn() {
         var userObject = jwtDecode(response.credential);
         document.getElementById("signInDiv").hidden = true;
 
-        setUser(userObject);
-
         const cookies = new Cookies();
-        cookies.set('GoogleJWTToken', userObject, { path: '/', secure: true});
+        cookies.set('GoogleJWTToken', userObject, { path: '/', secure: true });
 
         const userDTO = {
             name: userObject.name,
@@ -32,14 +30,23 @@ export default function SignIn() {
             .then(response => {
                 if (response.ok) {
                     console.log('User data has been sent to the backend.');
+                    // Parse the response to get the user object
+                    return response.json();
                 } else {
                     console.error('Failed to send user data to the backend.');
                 }
+            })
+            .then(data => {
+                setUser({
+                    ...userObject,
+                    ...data
+                });
             })
             .catch(error => {
                 console.error('An error occurred while sending user data.');
             });
     }
+
 
     function handleSignOut(event) {
         setUser({});

@@ -1,95 +1,108 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccess.Contracts;
+﻿using DataAccess.Contracts;
 using DataModels.DTO;
 using DataModels.Entities;
 using Service.Contracts;
 
-namespace Service
+namespace Service;
+
+public class UserService : IUserService
 {
-    public  class UserService : IUserService
+    private readonly IUserRepository _userRepository;
+
+    public UserService(IUserRepository userRepository)
     {
-        private readonly IUserRepository _userRepository;
+        _userRepository = userRepository;
+    }
 
-        public UserService(IUserRepository userRepository)
+    public async Task<IEnumerable<User>> GetUsers()
+    {
+        try
         {
-            _userRepository = userRepository;
+            var users = await _userRepository.GetUsers();
+            return users;
         }
-
-        public async Task<IEnumerable<User>> GetUsers()
+        catch (Exception ex)
         {
-            try
-            {
-                var users = await _userRepository.GetUsers();
-                return users;
-            }
-            catch (Exception ex)
-            {
-                //throw custom exceptions, describing the issue
-                throw;
-            }
+            throw;
         }
+    }
 
-        public async Task<User> GetUser(int id)
+    public async Task<User> GetUser(int id)
+    {
+        try
         {
-            try
-            {
-                var user = await _userRepository.GetUser(id);
-                return user;
-            }
-            catch (Exception ex)
-            {
-                //throw custom exceptions, describing the issue
-                throw;
-            }
+            var user = await _userRepository.GetUser(id);
+            return user;
         }
-
-        public async Task<User> CreateUser(CreateUserDTO user)
+        catch (Exception ex)
         {
-            if (user == null) throw new ArgumentNullException(nameof(user), "Missing user");
-
-            try
-            {
-                var createdUser = await _userRepository.CreateUser(user);
-                return createdUser;
-            }
-            catch (Exception ex)
-            {
-                //throw custom exceptions, describing the issue
-                throw;
-            }
+            throw;
         }
+    }
 
-        public async Task UpdateUser(int id, UpdateUserDTO user)
+    public async Task<User> GetUserByEmail(string email)
+    {
+        try
         {
-            if (user == null)
-                throw new ArgumentNullException(nameof(user), "Invalid data was provided to update user.");
-            try
-            {
-                var isSuccessfullyUpdated = await _userRepository.UpdateUser(id, user);
-                if (!isSuccessfullyUpdated) throw new ArgumentException("User with a following id was not found.");
-            }
-            catch (Exception ex)
-            {
-                //throw custom exceptions, describing the issue
-                throw;
-            }
+            var user = await _userRepository.GetUserByEmail(email);
+            return user;
         }
-
-        public async Task DeleteUser(int id)
+        catch (Exception ex)
         {
-            try
+            throw;
+        }
+    }
+
+    public async Task<User> CreateUser(CreateUserDTO user)
+    {
+        if (user == null) throw new ArgumentNullException(nameof(user), "Missing user");
+
+        try
+        {
+            // Check if the user already exists by email
+            var existingUser = await _userRepository.GetUserByEmail(user.Email);
+
+            if (existingUser != null)
             {
-                var isSuccessfullyDeleted = await _userRepository.DeleteUser(id);
+                // User already exists, return the existing user's ID
+                return existingUser;
             }
-            catch (Exception ex)
-            {
-                //throw custom exceptions, describing the issue
-                throw;
-            }
+
+            // User doesn't exist, proceed with creating a new user
+            var createdUser = await _userRepository.CreateUser(user);
+            return createdUser;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+
+    public async Task UpdateUser(int id, UpdateUserDTO user)
+    {
+        if (user == null)
+            throw new ArgumentNullException(nameof(user), "Invalid data was provided to update user.");
+
+        try
+        {
+            var isSuccessfullyUpdated = await _userRepository.UpdateUser(id, user);
+            if (!isSuccessfullyUpdated) throw new ArgumentException("User with the following id was not found.");
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+
+    public async Task DeleteUser(int id)
+    {
+        try
+        {
+            var isSuccessfullyDeleted = await _userRepository.DeleteUser(id);
+        }
+        catch (Exception ex)
+        {
+            throw;
         }
     }
 }

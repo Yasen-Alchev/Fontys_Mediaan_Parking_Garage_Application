@@ -51,8 +51,15 @@ public class UserController : ControllerBase
     {
         try
         {
+            var existingUser = await _userService.GetUserByEmail(user.Email);
+
+            if (existingUser != null)
+            {
+                return Ok(existingUser);
+            }
+
             var createdUser = await _userService.CreateUser(user);
-            //return the URL to access it
+
             return CreatedAtRoute("UserById", new { id = createdUser.Id }, createdUser);
         }
         catch (Exception ex)

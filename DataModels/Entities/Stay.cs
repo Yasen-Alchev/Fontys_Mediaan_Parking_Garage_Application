@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataModels.Entities;
 
-public class Spot
+public class Stay
 {
     public int Id { get; set; }
-    public int Status { get; set; }
-    public int ParkingId { get; set; }
+    public DateTime EntryTime { get; set; }
+    public DateTime? LeaveTime { get; set; }
     public int CarId { get; set; }
 }

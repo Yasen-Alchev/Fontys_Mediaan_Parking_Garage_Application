@@ -62,6 +62,16 @@ public class UserRepository : IUserRepository
         }
     }
 
+    public async Task<User> GetUserByEmail(string email)
+    {
+        var query = "SELECT * FROM User WHERE Email = @Email";
+        using (var connection = _context.CreateConnection())
+        {
+            var user = await connection.QuerySingleOrDefaultAsync<User>(query, new { email });
+            return user;
+        }
+    }
+
     public async Task<bool> UpdateUser(int id, UpdateUserDTO user)
     {
         var query = "UPDATE User " +
