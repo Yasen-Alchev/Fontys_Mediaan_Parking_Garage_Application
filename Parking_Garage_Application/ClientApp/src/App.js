@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import { Layout } from './components/Layout';
 import Cookies from 'universal-cookie';
-import { UserContext } from './contexts/UserContext';
+import { UserContext, UserProvider } from './contexts/UserContext';
 import { Home } from "./components/Home";
 import { Counter } from "./components/Counter";
 import { PrivateRoute } from "./components/PrivateRoute";
@@ -44,21 +44,23 @@ function App() {
     }
 
     return (
-        <Layout>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                {Object.keys(user).length > 0 ? (
-                    // Render all router is the user is logged in
-                    AppRoutes.map((route, index) => (
-                        <Route key={index} {...route} />
-                    ))
-                ) : (
-                    // Redirect to home is user is not logged in
-                    <Route path="*" element={<Navigate to="/" />} />
-                )}
-            </Routes>
+        <UserProvider>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    {Object.keys(user).length > 0 ? (
+                        // Render all router is the user is logged in
+                        AppRoutes.map((route, index) => (
+                            <Route key={index} {...route} />
+                        ))
+                    ) : (
+                        // Redirect to home is user is not logged in
+                        <Route path="*" element={<Navigate to="/" />} />
+                    )}
+                </Routes>
 
-        </Layout>
+            </Layout>
+        </UserProvider>
     );
 }
 

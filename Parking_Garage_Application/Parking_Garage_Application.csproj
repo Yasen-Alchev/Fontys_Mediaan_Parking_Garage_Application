@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\components\__tests__\" />
     <Folder Include="ClientApp\src\contexts\" />
   </ItemGroup>
 

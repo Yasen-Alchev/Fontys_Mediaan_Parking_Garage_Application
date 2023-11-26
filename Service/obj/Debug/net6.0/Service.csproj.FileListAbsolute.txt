@@ -1,0 +1,17 @@
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\bin\Debug\net6.0\Service.deps.json
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\bin\Debug\net6.0\Service.dll
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\bin\Debug\net6.0\Service.pdb
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\bin\Debug\net6.0\DataAccess.dll
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\bin\Debug\net6.0\DataModels.dll
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\bin\Debug\net6.0\DataAccess.pdb
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\bin\Debug\net6.0\DataModels.pdb
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\obj\Debug\net6.0\Service.csproj.AssemblyReference.cache
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\obj\Debug\net6.0\Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\obj\Debug\net6.0\Service.AssemblyInfoInputs.cache
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\obj\Debug\net6.0\Service.AssemblyInfo.cs
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\obj\Debug\net6.0\Service.csproj.CoreCompileInputs.cache
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\obj\Debug\net6.0\Service.csproj.CopyComplete
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\obj\Debug\net6.0\Service.dll
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\obj\Debug\net6.0\refint\Service.dll
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\obj\Debug\net6.0\Service.pdb
+D:\Fontys\Semester3\Fontys_Mediaan_Parking_Garage_Application\Service\obj\Debug\net6.0\ref\Service.dll
