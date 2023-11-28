@@ -29,12 +29,16 @@ public class StayRepository : IStayRepository
         }
     }
 
-    public async Task<Stay> GetStay(int stayId)
+    public async Task<Stay> GetStay(int carId)
     {
-        var query = "SELECT * FROM Stay WHERE Id = @StayId";
+        var query = "SELECT S1.id, entry_time, leave_time, car_id FROM `stay` as S1 " +
+                    "INNER JOIN " +
+                    "(SELECT MAX(id) AS id FROM `stay` WHERE car_id = @CarId) as S2 " +
+                    "ON S1.id = S2.id;";
+
         using (var connection = _context.CreateConnection())
         {
-            var stay = await connection.QuerySingleOrDefaultAsync<Stay>(query, new { StayId = stayId });
+            var stay = await connection.QuerySingleOrDefaultAsync<Stay>(query, new { CarId = carId });
             return stay;
         }
     }
@@ -67,7 +71,6 @@ public class StayRepository : IStayRepository
             }
             catch (Exception ex)
             {
-                // Log any exceptions
                 Console.WriteLine($"Error creating stay: {ex.Message}");
                 throw;
             }

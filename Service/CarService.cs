@@ -108,7 +108,6 @@ namespace Service
             else
             {
                 var leaveTime = DateTime.Now;
-
                 await _stayService.UpdateStay(carId, leaveTime);
                 return await _stayService.GetStay(carId);
             }

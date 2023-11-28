@@ -11,7 +11,7 @@ namespace DataAccess.Contracts;
 public interface IStayRepository
 {
     Task<IEnumerable<Stay>> GetStays();
-    Task<Stay> GetStay(int stayId);
+    Task<Stay> GetStay(int carId);
     Task<Stay> CreateStay(CreateStayDTO stay);
     Task UpdateStay(Stay stay);
     Task DeleteStay(int stayId);
