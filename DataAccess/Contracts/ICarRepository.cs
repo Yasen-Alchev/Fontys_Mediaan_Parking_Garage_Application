@@ -11,7 +11,8 @@ namespace DataAccess.Contracts;
 public interface ICarRepository
 {
     public Task<IEnumerable<Car>> GetCars();
-    public Task<Car> GetCar(int userId);
+    public Task<Car> GetCarById(int id);
+    public Task<Car> GetCarByLicensePlate(string licensePlate);
     public Task<Car> CreateCar(CreateCarDTO car);
     public Task UpdateCar(int id, UpdateCarDTO car);
     public Task DeleteCar(int id);

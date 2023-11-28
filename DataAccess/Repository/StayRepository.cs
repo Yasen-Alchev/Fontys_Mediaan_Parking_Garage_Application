@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using DataModels.DTO;
 
 namespace DataAccess.Repository;
 
@@ -38,7 +39,7 @@ public class StayRepository : IStayRepository
         }
     }
 
-    public async Task<Stay> CreateStay(Stay stay)
+    public async Task<Stay> CreateStay(CreateStayDTO stay)
     {
         var query = "INSERT INTO Stay (entry_time, leave_time, car_id) " +
                     "VALUES (@EntryTime, @LeaveTime, @CarId); " +
@@ -51,18 +52,29 @@ public class StayRepository : IStayRepository
 
         using (var connection = _context.CreateConnection())
         {
-            var id = await connection.QuerySingleAsync<int>(query, parameters);
-
-            var createdStay = new Stay
+            try
             {
-                Id = id,
-                EntryTime = stay.EntryTime,
-                LeaveTime = stay.LeaveTime,
-                CarId = stay.CarId,
-            };
-            return createdStay;
+                var id = await connection.QuerySingleAsync<int>(query, parameters);
+
+                var createdStay = new Stay
+                {
+                    Id = id,
+                    EntryTime = stay.EntryTime,
+                    LeaveTime = stay.LeaveTime,
+                    CarId = stay.CarId,
+                };
+                return createdStay;
+            }
+            catch (Exception ex)
+            {
+                // Log any exceptions
+                Console.WriteLine($"Error creating stay: {ex.Message}");
+                throw;
+            }
         }
     }
+
+
 
     public async Task UpdateStay(Stay stay)
     {

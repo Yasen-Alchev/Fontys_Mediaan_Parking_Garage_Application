@@ -1,4 +1,5 @@
-﻿using DataModels.Entities;
+﻿using DataModels.DTO;
+using DataModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ public interface IStayRepository
 {
     Task<IEnumerable<Stay>> GetStays();
     Task<Stay> GetStay(int stayId);
-    Task<Stay> CreateStay(Stay stay);
+    Task<Stay> CreateStay(CreateStayDTO stay);
     Task UpdateStay(Stay stay);
     Task DeleteStay(int stayId);
 }

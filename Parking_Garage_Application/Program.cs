@@ -17,10 +17,12 @@ Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<IStayRepository, StayRepository>();
+builder.Services.AddScoped<ISpotRepository, SpotRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<IStayService, StayService>();
+builder.Services.AddScoped<ISpotService, SpotService>();
 
 builder.Services.AddControllers();
 

@@ -34,12 +34,31 @@ public class CarController : ControllerBase
         }
     }
 
-    [HttpGet("{userId}")]
-    public async Task<ActionResult<Car>> GetCar(int userId)
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Car>> GetCarById(int id)
     {
         try
         {
-            var car = await _carService.GetCar(userId);
+            var car = await _carService.GetCarById(id);
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(car);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal Server Error: {ex.Message}");
+        }
+    }
+
+    [HttpGet("licenseplate/{licensePlate}")]
+    public async Task<ActionResult<Car>> GetCarByLicensePlate(string licensePlate)
+    {
+        try
+        {
+            var car = await _carService.GetCarByLicensePlate(licensePlate);
             if (car == null)
             {
                 return NotFound();
@@ -59,7 +78,7 @@ public class CarController : ControllerBase
         try
         {
             var createdCar = await _carService.CreateCar(carDTO);
-            return CreatedAtAction(nameof(GetCar), new { userId = createdCar.UserId }, createdCar);
+            return CreatedAtAction(nameof(GetCarById), new { id = createdCar.Id}, createdCar);
         }
         catch (Exception ex)
         {
@@ -107,6 +126,10 @@ public class CarController : ControllerBase
             }
 
             var stay = await _carService.CarEntry(entryDTO.UserId, entryDTO.LicensePlate);
+            if(stay == null)
+            {
+                return BadRequest("Car is not allowed to enter. Not parking spots available at the moment!");
+            }
             return Ok(stay);
         }
         catch (Exception ex)
@@ -123,11 +146,15 @@ public class CarController : ControllerBase
             if (await _carService.IsCarAllowedToLeave(leaveDTO.CarId))
             {
                 var stay = await _carService.CarLeave(leaveDTO.CarId);
+                if (stay == null)
+                {
+                    return BadRequest("Car is not allowed to leave! Check with the Payment Terminal machine!");
+                }
                 return Ok(stay);
             }
             else
             {
-                return BadRequest("Car is not allowed to leave at this time.");
+                return BadRequest("Car is not allowed to leave! Check with the Payment Terminal machine!");
             }
         }
         catch (Exception ex)

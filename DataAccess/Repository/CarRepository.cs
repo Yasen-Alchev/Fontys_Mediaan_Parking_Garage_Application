@@ -26,15 +26,37 @@ public class CarRepository : ICarRepository
             return cars.ToList();
         }
     }
-
-    public async Task<Car> GetCar(int userId)
+    public async Task<Car> GetCarById(int id)
     {
-        var query = "SELECT * FROM Car WHERE user_id = @UserId;";
+        var query = "SELECT * FROM Car WHERE id = @Id;";
         using (var connection = _context.CreateConnection())
         {
             try
             {
-                var car = await connection.QuerySingleOrDefaultAsync<Car>(query, new { UserId = userId });
+                var car = await connection.QuerySingleOrDefaultAsync<Car>(query, new { Id = id });
+
+                // Log the SQL query and the retrieved car
+                Console.WriteLine($"SQL Query: {query}");
+                Console.WriteLine($"Retrieved Car: {JsonConvert.SerializeObject(car)}");
+
+                return car;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception in GetCar: {ex}");
+                throw; // Rethrow the exception to maintain the existing error handling
+            }
+        }
+    }
+
+    public async Task<Car> GetCarByLicensePlate(string licensePlate)
+    {
+        var query = "SELECT * FROM Car WHERE license_plate = @LicensePlate;";
+        using (var connection = _context.CreateConnection())
+        {
+            try
+            {
+                var car = await connection.QuerySingleOrDefaultAsync<Car>(query, new { LicensePlate = licensePlate });
 
                 // Log the SQL query and the retrieved car
                 Console.WriteLine($"SQL Query: {query}");

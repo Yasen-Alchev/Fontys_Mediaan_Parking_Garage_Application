@@ -26,11 +26,11 @@ namespace Service
 
         public async Task<Stay> CreateStay(CreateStayDTO stayDTO)
         {
-            var newStay = new Stay
-            {
-                EntryTime = DateTime.Now,
-                CarId = stayDTO.CarId,
-            };
+            var newStay = new CreateStayDTO(
+                DateTime.Now,
+                stayDTO.LeaveTime,
+                stayDTO.CarId
+            );
 
             return await _stayRepository.CreateStay(newStay);
         }

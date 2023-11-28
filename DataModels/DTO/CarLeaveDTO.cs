@@ -8,10 +8,5 @@ using System.Threading.Tasks;
 namespace DataModels.DTO;
 public class CarLeaveDTO
 {
-    public CarLeaveDTO(int carId)
-    {
-        CarId = carId;
-    }
-
-    public int CarId { get; set; }
+    public int CarId{ get; set; }
 }

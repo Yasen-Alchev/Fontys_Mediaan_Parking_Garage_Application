@@ -1,80 +1,146 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../contexts/UserContext';
 
 function ControlGate() {
     const [inputValue, setInputValue] = useState('');
     const [carEntered, setCarEntered] = useState(false);
+    const [buttonText, setButtonText] = useState('Enter Parking');
     const userContext = useContext(UserContext);
+
+    useEffect(() => {
+        setButtonText(carEntered ? 'Leave Parking' : 'Enter Parking');
+    }, [carEntered]);
 
     const handleInputChange = (e) => {
         const value = e.target.value.toUpperCase();
         setInputValue(value);
     };
 
-    const handleButtonClick = async () => {
+    const getCarWithLicensePlate = async (licensePlate) => {
         try {
-            const { user } = userContext;
-
-            if (!user || Object.keys(user).length === 0) {
-                console.error('User not logged in');
-                return;
-            }
-
-            // Check if the car is associated with the user
-            const responseCheckCar = await fetch(`api/car/${user.id}`, {
+            const response = await fetch(`api/car/licenseplate/${licensePlate}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
 
-            var car = null;
-
-            if (!responseCheckCar.ok) {
-
-                const responseAssociateCar = await fetch('api/car', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        licensePlate: inputValue,
-                        userId: user.id,
-                    }),
-                });
-
-                if (!responseAssociateCar.ok) {
-                    console.error('Error associating car with user');
-                    return;
-                }
-
-                const responseGetCar = await fetch(`api/car/${user.id}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-
-                if (responseGetCar.ok) {
-                    car = await responseGetCar.json();
-                } else {
-                    console.error('Error fetching the car');
-                    return;
-                }
-            }
-            else {
-                car = await responseCheckCar.json();
+            if (!response.ok) {
+                console.error('Error fetching the car with license plate:', licensePlate);
+                return null;
             }
 
-            console.log("car end res: ");
-            console.log(car);
+            const car = await response.json();
+            return car;
+        } catch (error) {
+            console.error('An error occurred while fetching the car:', error);
+            throw error;
+        }
+    };
 
+    const registerCarEntry = async () => {
+        const { user } = userContext;
 
+        if (!user || Object.keys(user).length === 0) {
+            console.error('User not logged in');
+            return;
+        }
+
+        const entryDTO = {
+            userId: user.id,
+            licensePlate: inputValue,
+        };
+
+        try {
+            const response = await fetch('api/car/entry', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(entryDTO),
+            });
+
+            return response;
+        } catch (error) {
+            console.error('Error in getCarOnBarrierEntry:', error);
+            throw error;
+        }
+    }
+
+    const handleCarEntry = async () => {
+        try {
+            const { user } = userContext;
+            let carEntryResponse = await registerCarEntry();
+            console.log("Car Entry Response:", carEntryResponse);
+
+            if (!carEntryResponse) {
+                console.error("Error: Car detection failed");
+                return;
+            }
+
+            if (carEntryResponse.status === 404) {
+                console.log("User not found");
+                return;
+            } else if (carEntryResponse.status === 400) {
+                console.log("Car is not allowed to enter. Not enough parking spots available at the moment!");
+                return;
+            } else if (carEntryResponse.status === 200) {
+                //let stay = await carEntryResponse.json();
+
+                setCarEntered(true);
+
+            // TODO: Continue with further functionality e.g. associating a spot to the car...
+            } else {
+                console.error("Unexpected response:", carEntryResponse.status);
+            }
         } catch (error) {
             console.error('Error:', error);
         }
     };
+
+
+    const handleCarLeave = async () => {
+        const { user } = userContext;
+
+        if (!user || Object.keys(user).length === 0) {
+            console.error('User not logged in');
+            return;
+        }
+
+        const car = await getCarWithLicensePlate(inputValue);
+        if (!car) {
+            console.error('Error fetching the associated car');
+            return;
+        }
+
+        const leaveDTO = {
+            carId: car.id,
+        };
+
+        try {
+            const response = await fetch('api/car/leave', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(leaveDTO),
+            });
+
+            if (!response.ok) {
+                console.error('Error: Handling Car Leave:', response.status);
+                return;
+            }
+
+            const stay = await response.json();
+            console.log('Car left successfully:', stay);
+
+            setCarEntered(false);
+        } catch (error) {
+            console.error('An error occurred while leaving the car:', error);
+            // Log the entire response for more details
+            console.log('Error response details:', await error.response.json());
+        }
+    }
 
     return (
         <div className="flex h-90 items-center justify-center">
@@ -91,9 +157,9 @@ function ControlGate() {
                 <button
                     type="button"
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                    onClick={handleButtonClick}
+                    onClick={carEntered ? handleCarLeave : handleCarEntry}
                 >
-                    {carEntered ? 'Leave Parking' : 'Enter Parking'}
+                    {buttonText}
                 </button>
             </div>
         </div>
