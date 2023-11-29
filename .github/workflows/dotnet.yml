@@ -24,6 +24,9 @@ jobs:
           cd Parking_Garage_Application
           dotnet restore
 
+      - name: Change to tests project directory
+        run: cd Services.Tests
+        
       - name: Run unit tests
         run: dotnet test --configuration Release --logger trx
 
