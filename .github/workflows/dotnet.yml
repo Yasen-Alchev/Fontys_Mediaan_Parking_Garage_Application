@@ -17,10 +17,20 @@ jobs:
       - name: Install lftp
         run: sudo apt-get install lftp -y
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
 
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Run unit tests
+        run: dotnet test --configuration Release --logger trx
+          
       - name: Set up FTP
         run: echo "set ssl:verify-certificate no" >> $HOME/.lftprc
-
+        
       - name: Upload to FTP
         env:
           FTP_USER: i306810
