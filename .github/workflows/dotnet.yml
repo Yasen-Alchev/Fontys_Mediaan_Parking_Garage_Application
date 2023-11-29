@@ -28,7 +28,7 @@ jobs:
         run: cd Services.Tests
         
       - name: Run unit tests
-        run: dotnet test --configuration Release --logger trx
+        run: dotnet test --configuration Release --logger trx --no-restore Services.Tests/*.csproj
 
       - name: Install lftp
         run: sudo apt-get install lftp -y
