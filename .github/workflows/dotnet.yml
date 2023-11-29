@@ -1,4 +1,3 @@
-
 name: FTP Upload
 
 on:
@@ -29,6 +28,14 @@ jobs:
         
       - name: Run unit tests
         run: dotnet test --configuration Release --logger trx --no-restore Services.Tests/*.csproj
+
+      - name: Change back to the root directory
+        run: cd ..
+
+      - name: Publish the application
+        run: |
+          cd Parking_Garage_Application
+          dotnet publish --configuration Release --output ./publish
 
       - name: Install lftp
         run: sudo apt-get install lftp -y
