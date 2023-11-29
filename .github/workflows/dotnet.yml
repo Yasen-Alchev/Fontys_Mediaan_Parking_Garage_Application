@@ -1,9 +1,10 @@
+
 name: FTP Upload
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   upload:
@@ -22,7 +23,7 @@ jobs:
 
       - name: Upload to FTP
         env:
-          FTP_USER: ${{ secrets.LUNA_LOGIN }}
-          FTP_PASSWORD: ${{ secrets.LUNA_PWD }}
+          FTP_USER: i306810
+          FTP_PASSWORD: qz29262610?
         run: |
-          lftp -e "open -u $FTP_USER,$FTP_PASSWORD luna.fhict.nl && mirror -R Code/ /domains/i306810.luna.fhict.nl" -d
+          lftp -e "open -u $FTP_USER,$FTP_PASSWORD luna.fhict.nl && mirror -R Code/ /domains/projsem3i306810.luna.fhict.nl" -d
