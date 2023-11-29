@@ -43,7 +43,7 @@ jobs:
       - name: Publish the application
         run: |
           cd Parking_Garage_Application
-          dotnet publish --configuration Release --output ./publish
+          dotnet publish --configuration Release --output ./publish /p:PublishReadyToRun=false /p:IncludeAllContentForSelfExtract=false
 
       - name: Install lftp
         run: sudo apt-get install lftp -y
