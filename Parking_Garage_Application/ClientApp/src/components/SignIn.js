@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, _ , useContext } from 'react';
 import { jwtDecode } from "jwt-decode";
 import { UserContext } from '../contexts/UserContext';
 import Cookies from 'universal-cookie';
@@ -84,7 +84,7 @@ export default function SignIn() {
 
             {user &&
                 <div>
-                    <img src={user.picture} alt="User Picture"></img>
+                    <img src={user.picture} alt="User"></img>
                     <h3>{user.name}</h3>
                 </div>
             }
