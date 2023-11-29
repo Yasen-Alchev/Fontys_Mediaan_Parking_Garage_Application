@@ -4,7 +4,7 @@ name: FTP Upload
 on:
   push:
     branches:
-      - master
+      - dev
 
 jobs:
   upload:
