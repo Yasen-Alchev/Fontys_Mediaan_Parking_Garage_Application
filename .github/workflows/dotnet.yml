@@ -32,6 +32,9 @@ jobs:
       - name: Change back to the root directory
         run: cd ..
 
+      - name: Set process.env.CI to false
+        run: echo "process.env.CI=false" >> $GITHUB_ENV
+
       - name: Publish the application
         run: |
           cd Parking_Garage_Application
