@@ -84,7 +84,7 @@ export default function SignIn() {
 
             {user &&
                 <div>
-                    <img src={user.picture}></img>
+                    <img src={user.picture} alt="User Picture"></img>
                     <h3>{user.name}</h3>
                 </div>
             }
