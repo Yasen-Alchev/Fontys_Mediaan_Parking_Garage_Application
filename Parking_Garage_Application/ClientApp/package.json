@@ -60,9 +60,11 @@
     },
     "eslintConfig": {
         "extends": ["react-app"],
-        "rules": {
-            "no-warn-comments": "off"
-        }
+      "rules": {
+        "no-warn-comments": "off",
+        "no-unused-vars": "off",
+        "react-hooks/exhaustive-deps": "off"
+      }
     },
     "browserslist": {
         "production": [
