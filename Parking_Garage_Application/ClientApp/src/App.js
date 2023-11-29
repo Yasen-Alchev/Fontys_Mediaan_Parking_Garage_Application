@@ -6,9 +6,6 @@ import { Layout } from './components/Layout';
 import Cookies from 'universal-cookie';
 import { UserContext } from './contexts/UserContext';
 import { Home } from "./components/Home";
-import { Counter } from "./components/Counter";
-import { PrivateRoute } from "./components/PrivateRoute";
-import { ControlGate } from "./components/ControlGate";
 
 function LoadingIndicator() {
     return (

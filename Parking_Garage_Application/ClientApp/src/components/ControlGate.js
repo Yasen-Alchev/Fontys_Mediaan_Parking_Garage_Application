@@ -69,7 +69,6 @@ function ControlGate() {
 
     const handleCarEntry = async () => {
         try {
-            const { user } = userContext;
             let carEntryResponse = await registerCarEntry();
             console.log("Car Entry Response:", carEntryResponse);
 
