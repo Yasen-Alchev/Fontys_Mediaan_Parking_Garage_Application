@@ -1,0 +1,28 @@
+name: FTP Upload
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install lftp
+        run: sudo apt-get install lftp -y
+
+
+      - name: Set up FTP
+        run: echo "set ssl:verify-certificate no" >> $HOME/.lftprc
+
+      - name: Upload to FTP
+        env:
+          FTP_USER: ${{ secrets.LUNA_LOGIN }}
+          FTP_PASSWORD: ${{ secrets.LUNA_PWD }}
+        run: |
+          lftp -e "open -u $FTP_USER,$FTP_PASSWORD luna.fhict.nl && mirror -R Code/ /domains/i306810.luna.fhict.nl" -d
