@@ -59,9 +59,10 @@
         "lint": "eslint ./src/"
     },
     "eslintConfig": {
-        "extends": [
-            "react-app"
-        ]
+        "extends": ["react-app"],
+        "rules": {
+            "no-warn-comments": "off"
+        }
     },
     "browserslist": {
         "production": [
