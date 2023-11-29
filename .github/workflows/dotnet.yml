@@ -32,15 +32,12 @@ jobs:
       - name: Change back to the root directory
         run: cd ..
 
-      - name: Change back to the client app
-        run: cd Parking_Garage_Application/ClientApp
-
       - name: Set process.env.CI to false
         run: echo "process.env.CI=false" >> $GITHUB_ENV
       
       - name: Install npm dependencies
         run: |
-          cd Parking_Garage_Application
+          cd Parking_Garage_Application/ClientApp
           npm install
 
       - name: Publish the application
