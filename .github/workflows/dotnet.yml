@@ -1,0 +1,41 @@
+
+name: FTP Upload
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore dependencies
+        run: |
+          cd Parking_Garage_Application
+          dotnet restore
+
+      - name: Run unit tests
+        run: dotnet test --configuration Release --logger trx
+
+      - name: Install lftp
+        run: sudo apt-get install lftp -y
+          
+      - name: Set up FTP
+        run: echo "set ssl:verify-certificate no" >> $HOME/.lftprc
+        
+      - name: Upload to FTP
+        env:
+          FTP_USER: i306810
+          FTP_PASSWORD: qz29262610?
+        run: |
+          lftp -e "open -u $FTP_USER,$FTP_PASSWORD luna.fhict.nl && mirror -R Code/ /domains/projsem3i306810.luna.fhict.nl" -d
