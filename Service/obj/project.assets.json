@@ -618,7 +618,7 @@
           }
         }
       },
-      "System.Text.Encodings.Web/7.0.0": {
+      "System.Text.Encodings.Web/8.0.0": {
         "type": "package",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
@@ -643,11 +643,11 @@
           }
         }
       },
-      "System.Text.Json/7.0.1": {
+      "System.Text.Json/8.0.0": {
         "type": "package",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "System.Text.Encodings.Web": "7.0.0"
+          "System.Text.Encodings.Web": "8.0.0"
         },
         "compile": {
           "lib/net6.0/System.Text.Json.dll": {
@@ -725,7 +725,8 @@
           "Microsoft.Extensions.Configuration": "7.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
-          "MySql.Data": "8.2.0"
+          "MySql.Data": "8.2.0",
+          "System.Text.Json": "8.0.0"
         },
         "compile": {
           "bin/placeholder/DataAccess.dll": {}
@@ -737,6 +738,9 @@
       "DataModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "System.Text.Json": "8.0.0"
+        },
         "compile": {
           "bin/placeholder/DataModels.dll": {}
         },
@@ -1977,10 +1981,10 @@
         "version.txt"
       ]
     },
-    "System.Text.Encodings.Web/7.0.0": {
-      "sha512": "OP6umVGxc0Z0MvZQBVigj4/U31Pw72ITihDWP9WiWDm+q5aoe0GaJivsfYGq53o6dxH7DcXWiCTl7+0o2CGdmg==",
+    "System.Text.Encodings.Web/8.0.0": {
+      "sha512": "yev/k9GHAEGx2Rg3/tU6MQh4HGBXJs70y7j1LaM1i/ER9po+6nnQ6RRqTJn1E7Xu0fbIFK80Nh5EoODxrbxwBQ==",
       "type": "package",
-      "path": "system.text.encodings.web/7.0.0",
+      "path": "system.text.encodings.web/8.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1997,27 +2001,31 @@
         "lib/net6.0/System.Text.Encodings.Web.xml",
         "lib/net7.0/System.Text.Encodings.Web.dll",
         "lib/net7.0/System.Text.Encodings.Web.xml",
+        "lib/net8.0/System.Text.Encodings.Web.dll",
+        "lib/net8.0/System.Text.Encodings.Web.xml",
         "lib/netstandard2.0/System.Text.Encodings.Web.dll",
         "lib/netstandard2.0/System.Text.Encodings.Web.xml",
         "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll",
         "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.xml",
         "runtimes/browser/lib/net7.0/System.Text.Encodings.Web.dll",
         "runtimes/browser/lib/net7.0/System.Text.Encodings.Web.xml",
-        "system.text.encodings.web.7.0.0.nupkg.sha512",
+        "runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll",
+        "runtimes/browser/lib/net8.0/System.Text.Encodings.Web.xml",
+        "system.text.encodings.web.8.0.0.nupkg.sha512",
         "system.text.encodings.web.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/7.0.1": {
-      "sha512": "OtDEmCCiNl8JAduFKZ/r0Sw6XZNHwIicUYy/mXgMDGeOsZLshH37qi3oPRzFYiryVktiMoQLByMGPtRCEMYbeQ==",
+    "System.Text.Json/8.0.0": {
+      "sha512": "OdrZO2WjkiEG6ajEFRABTRCi/wuXQPxeV6g8xvUJqdxMvvuCCEk86zPla8UiIQJz3durtUEbNyY/3lIhS0yZvQ==",
       "type": "package",
-      "path": "system.text.json/7.0.1",
+      "path": "system.text.json/8.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
-        "README.md",
+        "PACKAGE.md",
         "THIRD-PARTY-NOTICES.TXT",
         "analyzers/dotnet/roslyn3.11/cs/System.Text.Json.SourceGeneration.dll",
         "analyzers/dotnet/roslyn3.11/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
@@ -2072,9 +2080,11 @@
         "lib/net6.0/System.Text.Json.xml",
         "lib/net7.0/System.Text.Json.dll",
         "lib/net7.0/System.Text.Json.xml",
+        "lib/net8.0/System.Text.Json.dll",
+        "lib/net8.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.7.0.1.nupkg.sha512",
+        "system.text.json.8.0.0.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -2237,39 +2247,48 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "DataAccess >= 1.0.0",
-      "DataModels >= 1.0.0"
+      "DataModels >= 1.0.0",
+      "System.Text.Json >= 8.0.0"
     ]
   },
   "packageFolders": {
-    "/Users/iproil/.nuget/packages/": {}
+    "C:\\Users\\Noth\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/iproil/Projects/Fontys_Mediaan_Parking_Garage_Application/Service/Service.csproj",
+      "projectUniqueName": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj",
       "projectName": "Service",
-      "projectPath": "/Users/iproil/Projects/Fontys_Mediaan_Parking_Garage_Application/Service/Service.csproj",
-      "packagesPath": "/Users/iproil/.nuget/packages/",
-      "outputPath": "/Users/iproil/Projects/Fontys_Mediaan_Parking_Garage_Application/Service/obj/",
+      "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj",
+      "packagesPath": "C:\\Users\\Noth\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Service\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/iproil/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Noth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/iproil/Projects/Fontys_Mediaan_Parking_Garage_Application/DataAccess/DataAccess.csproj": {
-              "projectPath": "/Users/iproil/Projects/Fontys_Mediaan_Parking_Garage_Application/DataAccess/DataAccess.csproj"
+            "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj"
             },
-            "/Users/iproil/Projects/Fontys_Mediaan_Parking_Garage_Application/DataModels/DataModels.csproj": {
-              "projectPath": "/Users/iproil/Projects/Fontys_Mediaan_Parking_Garage_Application/DataModels/DataModels.csproj"
+            "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
+              "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
             }
           }
         }
@@ -2283,6 +2302,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "System.Text.Json": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -2294,22 +2319,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.18, 6.0.18]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.18, 6.0.18]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/Users/iproil/.dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }
