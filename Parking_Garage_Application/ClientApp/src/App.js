@@ -72,6 +72,7 @@ function App() {
     }
 
     return (
+        <UserProvider>
         <Layout>
             <Routes>
                 <Route path="/" element={<Home />} />

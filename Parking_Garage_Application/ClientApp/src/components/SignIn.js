@@ -77,7 +77,7 @@ export default function SignIn() {
   return (
     <div className="App">
       <div id="signInDiv"></div>
-      {Object.keys(user).length != 0 && (
+      {Object.keys(user).length !== 0 && (
         <button onClick={(e) => handleSignOut(e)}>Sign Out</button>
       )}
 
