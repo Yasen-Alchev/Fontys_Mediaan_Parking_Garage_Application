@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj": {}
+    "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj": {}
   },
   "projects": {
-    "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\jelle\\.nuget\\packages\\",
-        "outputPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Noth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jelle\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Noth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
-                "projectPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
+              "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
+                "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
               }
             }
           }
@@ -81,21 +86,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
+    "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj",
+        "projectUniqueName": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj",
         "projectName": "DataModels",
-        "projectPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj",
-        "packagesPath": "C:\\Users\\jelle\\.nuget\\packages\\",
-        "outputPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\obj\\",
+        "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj",
+        "packagesPath": "C:\\Users\\Noth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jelle\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Noth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -103,6 +112,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -136,21 +146,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj": {
+    "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj",
         "projectName": "Services.Tests",
-        "projectPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj",
-        "packagesPath": "C:\\Users\\jelle\\.nuget\\packages\\",
-        "outputPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\obj\\",
+        "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\Services.Tests.csproj",
+        "packagesPath": "C:\\Users\\Noth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Services.Tests\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jelle\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Noth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -158,17 +172,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
-                "projectPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
+              "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
+                "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
               },
-              "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj": {
-                "projectPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj"
+              "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj"
               }
             }
           }
@@ -224,21 +239,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj": {
+    "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\jelle\\.nuget\\packages\\",
-        "outputPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\Service\\obj\\",
+        "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\Noth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jelle\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Noth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -246,17 +265,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj"
               },
-              "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
-                "projectPath": "D:\\Fontys\\Semester3\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
+              "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
+                "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
               }
             }
           }
@@ -286,7 +306,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }
