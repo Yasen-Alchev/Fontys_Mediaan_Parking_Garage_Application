@@ -3,6 +3,7 @@ import { Counter } from "./components/Counter";
 import { Home } from "./components/Home";
 import  ParkingSpotsStatus from "./components/ParkingSpotsStatus";
 import PaymentPage from "./components/PaymentPage";
+import CarRegistration from "./components/CarRegistration";
 
 const AppRoutes = [
   {
@@ -24,6 +25,10 @@ const AppRoutes = [
     {
         path: '/paymentPage',
             element: <PaymentPage />
+    },
+    {
+        path: '/carRegistration',
+        element: <CarRegistration />
     }
 ];
 

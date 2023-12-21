@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
+import LicensePlateInput from './licensePlateInput';
 
 const ParkingSpotsStatus = () => {
     const { user } = useContext(UserContext);
@@ -8,9 +9,14 @@ const ParkingSpotsStatus = () => {
     const [selectedSpot, setSelectedSpot] = useState(null);
     const [parkingSpots, setParkingSpots] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [selectedCar, setSelectedCar] = useState(null);
 
     const handleSpotClick = (spotId) => {
         setSelectedSpot(spotId);
+    };
+
+    const handleCarSelect = (car) => {
+        setSelectedCar(car);
     };
 
     const getSpots = async () => {
@@ -41,6 +47,14 @@ const ParkingSpotsStatus = () => {
             alert('Please select a parking spot.');
             return;
         }
+        if (selectedCar === null && user.role === 0) {
+            alert('No license plate selected.');
+            return;
+        }
+        if (selectedCar !== null && parkingSpots.some((spot) => spot.carId === selectedCar.id)) {
+            alert('Selected car already has a reservation');
+            return;
+        }
         await updateSpot(status);
         setSelectedSpot(null);
         setParkingSpots(generateRealisticLayout(await getSpots()));
@@ -48,12 +62,16 @@ const ParkingSpotsStatus = () => {
 
     const updateSpot = async (status) => {
         try {
+            let carid = null
+            if (selectedCar !== null) {
+                carid = status === 0 ? null : selectedCar.id;
+            }
             const response = await fetch(`api/spot/${selectedSpot}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ id: selectedSpot, status: status, carid: null }),
+                body: JSON.stringify({ id: selectedSpot, status: status, carid: carid }),
             });
             console.log('Updated spot');
         } catch (error) {
@@ -111,6 +129,7 @@ const ParkingSpotsStatus = () => {
             const fetchedParkingSpots = await getSpots();
             const realisticLayout = generateRealisticLayout(fetchedParkingSpots);
             setParkingSpots(realisticLayout);
+            console.log(realisticLayout);
             setDataLoaded(true);
         };
 
@@ -194,13 +213,17 @@ const ParkingSpotsStatus = () => {
                         </>
 
                         :
+                        <>
+                            <LicensePlateInput onCarSelect={handleCarSelect} />
+
                         <button
                             type="button"
                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                             onClick={() => handleUpdateClick(2)}
                         >
                             Reserve Spot
-                        </button>
+                            </button>
+                        </>
                     }
                 </div>
             </div>
