@@ -1529,8 +1529,7 @@
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
           "MySql.Data": "8.2.0",
-          "Newtonsoft.Json": "13.0.3",
-          "System.Text.Json": "8.0.0"
+          "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
           "bin/placeholder/DataAccess.dll": {}
@@ -1543,8 +1542,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Dapper.Contrib": "2.0.78",
-          "System.Text.Json": "8.0.0"
+          "Dapper.Contrib": "2.0.78"
         },
         "compile": {
           "bin/placeholder/DataModels.dll": {}
@@ -1558,8 +1556,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "DataAccess": "1.0.0",
-          "DataModels": "1.0.0",
-          "System.Text.Json": "8.0.0"
+          "DataModels": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Service.dll": {}
@@ -5034,9 +5031,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
-      "originalTargetFrameworks": [
-        "net6.0"
-      ],
+      "originalTargetFrameworks": ["net6.0"],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
@@ -5056,9 +5051,7 @@
         }
       },
       "warningProperties": {
-        "warnAsError": [
-          "NU1605"
-        ]
+        "warnAsError": ["NU1605"]
       }
     },
     "frameworks": {

@@ -23,7 +23,8 @@ export class NavMenu extends Component {
         });
     }
 
-    render() {
+  <<<<<<< Updated upstream
+  render() {
         const { user } = this.context;
 
         return (
@@ -47,6 +48,9 @@ export class NavMenu extends Component {
                                     <NavItem>
                                         <NavLink tag={Link} className="text-dark" to="/parkingSpotsStatus">Parking Spots</NavLink>
                                     </NavItem>
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
+                                    </NavItem>
                                 </>
                                 :
                                 <div></div>
@@ -62,4 +66,45 @@ export class NavMenu extends Component {
             </header>
         );
     }
+=======
+    render() {
+        const { user } = this.context;
+
+        return (
+            <header>
+                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
+                    <NavbarBrand tag={Link} to="/">Parking_Garage_Application</NavbarBrand>
+                    <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+                    <Collapse className="navbar-collapse" isOpen={!this.state.collapsed} navbar>
+                        <ul className="navbar-nav ml-auto">
+                            <NavItem>
+                                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
+                            </NavItem>
+                            {user && Object.keys(user).length ?
+                                <>
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-dark" to="/controlGate">Control Gate</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-dark" to="/paymentPage">Pay</NavLink>
+                                    </NavItem>
+                                </>
+                                :
+                                <div></div>
+                            }
+                            {user && (
+                                <NavItem>
+                                    <SignIn></SignIn>
+                                </NavItem>
+                            )}
+                        </ul>
+                    </Collapse>
+                </Navbar>
+            </header>
+        );
+    }
+>>>>>>> Stashed changes
 }
