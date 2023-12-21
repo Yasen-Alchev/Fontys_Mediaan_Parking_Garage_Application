@@ -3,7 +3,7 @@ import { UserContext } from '../contexts/UserContext';
 
 const ParkingSpotsStatus = () => {
     const { user } = useContext(UserContext);
-    console.log('User:', user);
+    //console.log('User:', user);
 
     const [selectedSpot, setSelectedSpot] = useState(null);
     const [parkingSpots, setParkingSpots] = useState([]);
@@ -36,41 +36,30 @@ const ParkingSpotsStatus = () => {
         }
     };
 
-    const markSpotAsFree = () => {
-        if (selectedSpot !== null) {
-            console.log(`Selected Spot: ${selectedSpot}, Status: Free`);
-            setSelectedSpot(null);
-        } else {
+    async function handleUpdateClick(status) {
+        if (selectedSpot == null) {
             alert('Please select a parking spot.');
+            return;
         }
-    };
-
-    const markSpotAsOccupied = () => {
-        if (selectedSpot !== null) {
-            console.log(`Selected Spot: ${selectedSpot}, Status: Occupied`);
-            setSelectedSpot(null);
-        } else {
-            alert('Please select a parking spot.');
-        }
-    };
-
-    const markSpotAsReserved = () => {
-        if (selectedSpot !== null) {
-            console.log(`Selected Spot: ${selectedSpot}, Status: Reserved`);
-            setSelectedSpot(null);
-        } else {
-            alert('Please select a parking spot.');
-        }
-    };
-
-    const reserveSpot = () => {
-        if (selectedSpot !== null) {
-            console.log(`Selected Spot: ${selectedSpot}, User reserved this spot`);
-            setSelectedSpot(null);
-        } else {
-            alert('Please select a parking spot.');
-        }
+        await updateSpot(status);
+        setSelectedSpot(null);
+        setParkingSpots(generateRealisticLayout(await getSpots()));
     }
+
+    const updateSpot = async (status) => {
+        try {
+            const response = await fetch(`api/spot/${selectedSpot}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: selectedSpot, status: status, carid: null }),
+            });
+            console.log('Updated spot');
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
     const generateRealisticLayout = (fetchedParkingSpots) => {
         const numCols = 11;
@@ -184,21 +173,21 @@ const ParkingSpotsStatus = () => {
                                 <button
                                 type="button"
                                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                onClick={markSpotAsFree}
+                                onClick={() => handleUpdateClick(0)}
                             >
                                 Free
                             </button>
                             <button
                                 type="button"
                                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                onClick={markSpotAsOccupied}
+                                onClick={() => handleUpdateClick(1)}
                             >
                                 Occupied
                             </button>
                             <button
                                 type="button"
                                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                onClick={markSpotAsReserved}
+                                onClick={() => handleUpdateClick(2)}
                             >
                                 Reserved
                                 </button>
@@ -208,7 +197,7 @@ const ParkingSpotsStatus = () => {
                         <button
                             type="button"
                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                            onClick={reserveSpot}
+                            onClick={() => handleUpdateClick(2)}
                         >
                             Reserve Spot
                         </button>

@@ -67,7 +67,7 @@ namespace DataAccess.Repository
 
             using (var connection = _context.CreateConnection())
             {
-                await connection.ExecuteAsync(query, new { spot.Status, spot.CarId, SpotId = spot.Id });
+                await connection.ExecuteAsync(query, new { spot.Status, CarId = (int?)spot.CarId, SpotId = spot.Id });
             }
         }
     }
