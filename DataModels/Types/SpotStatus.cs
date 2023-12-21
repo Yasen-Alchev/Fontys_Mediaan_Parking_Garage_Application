@@ -9,6 +9,6 @@ namespace DataModels.Types;
 public enum SpotStatus
 {
     Free,
-    Ocupied,
+    Occupied,
     Reserved,
 }
