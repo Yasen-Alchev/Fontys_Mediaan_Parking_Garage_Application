@@ -84,7 +84,7 @@ const ParkingSpotsStatus = () => {
                     fetchedParkingSpots[spotIndex++].position = position;
                 }
                 //else: car line -> empty
-                if (spotIndex == fetchedParkingSpots.length) {
+                if (spotIndex === fetchedParkingSpots.length) {
                     return fetchedParkingSpots;
                 }
             }
@@ -93,7 +93,7 @@ const ParkingSpotsStatus = () => {
     };
 
     const getStatusColor = (status, role) => {
-        if (role == 1) {
+        if (role === 1) {
             switch (status) {
                 case 0:
                     return 'white';
@@ -140,7 +140,7 @@ const ParkingSpotsStatus = () => {
     return (
         <div className="flex h-90 items-center justify-center">
             <div className="text-center">
-                {user.role == 1
+                {user.role === 1
                     ? 
                         <>
                             <h1 className="text-4xl mb-6">Parking Spots Status Map</h1>
@@ -178,7 +178,7 @@ const ParkingSpotsStatus = () => {
 
                 </div>
                 <div style={{ marginTop: '20px' }}>
-                    {user.role == 1
+                    {user.role === 1
                         ? 
                         <>
                                 <button

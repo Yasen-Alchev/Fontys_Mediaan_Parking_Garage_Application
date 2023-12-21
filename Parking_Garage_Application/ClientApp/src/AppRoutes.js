@@ -14,23 +14,17 @@ const AppRoutes = [
     element: <Counter />
   },
   {
-    <<<<<<< Updated upstream
     path: '/controlGate',
         element: <ControlGate />
     },
     {
         path: '/parkingSpotsStatus',
         element: <ParkingSpotsStatus />
-    }
-=======
-    path: '/controlGate',
-    element: <ControlGate />
     },
     {
         path: '/paymentPage',
-        element: <PaymentPage />
+            element: <PaymentPage />
     }
->>>>>>> Stashed changes
 ];
 
 export default AppRoutes;
