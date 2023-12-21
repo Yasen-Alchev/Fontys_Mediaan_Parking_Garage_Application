@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { UserContext } from '../contexts/UserContext';
 
 export class Home extends Component {
-  static displayName = Home.name;
+    static contextType = UserContext;
+    static displayName = Home.name;
 
-  render() {
+    render() {
     return (
       <div>
         <h1>Hello, world!</h1>

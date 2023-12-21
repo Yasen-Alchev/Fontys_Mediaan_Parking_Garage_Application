@@ -94,3 +94,10 @@ $RECYCLE.BIN/
 
 # Mono Auto Generated Files
 mono_crash.*
+
+# obj and bin folders
+DataAccess/obj
+DataModels/obj/
+Service/obj
+Services.Tests/bin
+Services.Tests/obj

@@ -4,10 +4,8 @@ const { env } = require('process');
 const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
   env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'http://localhost:52189';
 
-const context =  [
-    "/weatherforecast",
-    "api/user",
-    "/user"
+const context = [
+    "/api",
 ];
 
 module.exports = function(app) {
@@ -18,6 +16,13 @@ module.exports = function(app) {
       Connection: 'Keep-Alive'
     }
   });
+
+    app.use((req, res, next) => {
+        res.setHeader('Access-Control-Allow-Origin', 'https://lh3.googleusercontent.com');
+        res.setHeader('Access-Control-Allow-Headers', '*');
+        res.setHeader('Access-Control-Allow-Methods', '*');
+        next();
+    });
 
   app.use(appProxy);
 };
