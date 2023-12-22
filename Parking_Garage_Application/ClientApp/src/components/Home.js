@@ -11,18 +11,18 @@ export class Home extends Component {
     render() {
     return (
         <div className="container my-5">
-            <h1 className="text-center mb-4">Welcome to Median Parking Solutions – Where Parking Meets Perfection!</h1>
+            <h1 className="text-center mb-4">Welcome to Mediaan Parking Solutions – Where Parking Meets Perfection!</h1>
 
             <div className="text-center mb-5">
                 <p><strong>Efficient Parking for Everyone – Individuals and Businesses Alike</strong></p>
-                <p>At Median, we believe in transforming the conventional parking experience into a seamless, efficient, and hassle-free endeavor. Whether you're an individual seeking a spot for your vehicle or a business in need of comprehensive parking solutions, Median is your ultimate parking partner.</p>
+                <p>At Mediaan, we believe in transforming the conventional parking experience into a seamless, efficient, and hassle-free endeavor. Whether you're an individual seeking a spot for your vehicle or a business in need of comprehensive parking solutions, Median is your ultimate parking partner.</p>
             </div>
 
             <div className="row">
                 <div className="col-md-4 mb-3 text-center">
                     <FontAwesomeIcon icon={faCar} size="3x" />
                     <h3>Diverse Parking Options</h3>
-                    <p>From convenient street parking to secure parking lots, Median caters to all your parking needs.</p>
+                    <p>From convenient street parking to secure parking lots, Mediaan caters to all your parking needs.</p>
                 </div>
                 <div className="col-md-4 mb-3 text-center">
                     <FontAwesomeIcon icon={faBuilding} size="3x" />
@@ -32,7 +32,7 @@ export class Home extends Component {
                 <div className="col-md-4 mb-3 text-center">
                     <FontAwesomeIcon icon={faCalendarAlt} size="3x" />
                     <h3>Reserve Your Spot</h3>
-                    <p>Say goodbye to parking anxieties. With Median, you can effortlessly reserve a parking space ahead of time, guaranteeing peace of mind.</p>
+                    <p>Say goodbye to parking anxieties. With Mediaan, you can effortlessly reserve a parking space ahead of time, guaranteeing peace of mind.</p>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@ export class Home extends Component {
             </div>
 
             <footer className="text-center mt-5">
-                <p>Median Parking Solutions – Your Journey, Our Spaces! 🌟</p>
+                <p>Mediaan Parking Solutions – Your Journey, Our Spaces! 🌟</p>
             </footer>
         </div>
     );
