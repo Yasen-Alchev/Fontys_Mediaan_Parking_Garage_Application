@@ -2316,11 +2316,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\Noth\\Projects\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
+      "projectPath": "C:\\Users\\Noth\\Projects\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\DataAccess.csproj",
       "packagesPath": "C:\\Users\\Noth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\obj\\",
+      "outputPath": "C:\\Users\\Noth\\Projects\\Fontys_Mediaan_Parking_Garage_Application\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2330,7 +2330,9 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
-      "originalTargetFrameworks": ["net6.0"],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
@@ -2340,14 +2342,16 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
-              "projectPath": "C:\\Users\\Noth\\Projects\\ParkingGarage\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
+            "C:\\Users\\Noth\\Projects\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj": {
+              "projectPath": "C:\\Users\\Noth\\Projects\\Fontys_Mediaan_Parking_Garage_Application\\DataModels\\DataModels.csproj"
             }
           }
         }
       },
       "warningProperties": {
-        "warnAsError": ["NU1605"]
+        "warnAsError": [
+          "NU1605"
+        ]
       }
     },
     "frameworks": {

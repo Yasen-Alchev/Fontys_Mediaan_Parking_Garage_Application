@@ -10,14 +10,24 @@ const ParkingSpotsStatus = () => {
     const [parkingSpots, setParkingSpots] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
     const [selectedCar, setSelectedCar] = useState(null);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [isValidDateRange, setIsValidDateRange] = useState(true);
 
     const handleSpotClick = (spotId) => {
         setSelectedSpot(spotId);
     };
 
-    const handleCarSelect = (car) => {
+    const handleCarSelect = (car, startDate, endDate) => {
         setSelectedCar(car);
+        setStartDate(startDate);
+        setEndDate(endDate);
     };
+
+    //useEffect(() => {
+    //    console.log(`Updated data: \nCar: ${selectedCar}\nStart date: ${startDate}\nEnd date: ${endDate}`);
+    //}, [selectedCar, startDate, endDate]);
+
 
     const getSpots = async () => {
         let fetchedSpots = [];
@@ -55,6 +65,14 @@ const ParkingSpotsStatus = () => {
             alert('Selected car already has a reservation');
             return;
         }
+        if ( status === 2) {
+            if (!await createReservation()) {
+                setSelectedSpot(null);
+                setParkingSpots(generateRealisticLayout(await getSpots()));
+                return;
+            }
+            
+        }
         await updateSpot(status);
         setSelectedSpot(null);
         setParkingSpots(generateRealisticLayout(await getSpots()));
@@ -73,11 +91,43 @@ const ParkingSpotsStatus = () => {
                 },
                 body: JSON.stringify({ id: selectedSpot, status: status, carid: carid }),
             });
+
             console.log('Updated spot');
         } catch (error) {
             console.error('Error:', error);
         }
     };
+
+    async function createReservation() {
+        try {
+            const reservationData = {
+                carId: selectedCar.id,
+                spotId: selectedSpot,
+                startDate: startDate,
+                endDate: endDate
+            };
+            const reservationResponse = await fetch(`/api/reservation`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reservationData),
+            });
+
+            if (reservationResponse.ok) {
+                alert('Reservation created successfully!');
+                return true;
+            } else {
+                const errorData = await reservationResponse.json();
+                alert(`Failed to create reservation: ${errorData.message}`);
+            }
+        } catch (error) {
+            console.error('Reservation creation error:', error);
+            alert('An error occurred while creating the reservation.');
+        }
+
+        return false;
+    }
 
     const generateRealisticLayout = (fetchedParkingSpots) => {
         const numCols = 11;
@@ -98,6 +148,7 @@ const ParkingSpotsStatus = () => {
         }
         return fetchedParkingSpots;
     };
+    
 
     const getStatusColor = (status, role) => {
         if (role === 1) {
@@ -135,6 +186,19 @@ const ParkingSpotsStatus = () => {
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        if (startDate && endDate) {
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+
+            if (end <= start) {
+                setIsValidDateRange(false);
+            } else {
+                setIsValidDateRange(true);
+            }
+        }
+    }, [startDate, endDate]);
 
     if (!dataLoaded) {
         return <p>Loading...</p>;
@@ -215,9 +279,13 @@ const ParkingSpotsStatus = () => {
                         :
                         <>
                             <LicensePlateInput onCarSelect={handleCarSelect} />
+                            {!isValidDateRange && (
+                                <p className="text-red-500">End date must be later than the start date.</p>
+                            )}
 
                         <button
                             type="button"
+                            disabled={!isValidDateRange}
                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                             onClick={() => handleUpdateClick(2)}
                         >

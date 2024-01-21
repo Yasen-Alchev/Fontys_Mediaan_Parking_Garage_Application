@@ -61,5 +61,16 @@ namespace Parking_Garage_Application.Controllers
 
             return 0.00m;
         }
+
+        // Method to take account for paid reservation, to make sure it's excluded from the amount, 
+        // in case the person came earlier or stayed later.
+
+        [HttpGet("estimate")]
+        public ActionResult<decimal> EstimatePayment(DateTime entryTime, DateTime leaveTime, string licensePlate)
+        {
+            decimal paymentAmount = CalculatePayment(entryTime, leaveTime, licensePlate);
+            return Ok(paymentAmount);
+        }
+
     }
 }
