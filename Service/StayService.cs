@@ -29,13 +29,14 @@ namespace Service
             var newStay = new CreateStayDTO(
                 DateTime.Now,
                 stayDTO.LeaveTime,
-                stayDTO.CarId
+                stayDTO.CarId,
+                hasPaid: false
             );
 
             return await _stayRepository.CreateStay(newStay);
         }
 
-        public async Task UpdateStay(int stayId, DateTime? leaveTime)
+        public async Task UpdateStay(int stayId, UpdateStayDTO updateStayDTO)
         {
             var existingStay = await _stayRepository.GetStay(stayId);
 
@@ -44,7 +45,8 @@ namespace Service
                 throw new Exception($"Stay with ID {stayId} not found.");
             }
 
-            existingStay.LeaveTime = leaveTime;
+            existingStay.LeaveTime = updateStayDTO.LeaveTime;
+            existingStay.HasPaid = updateStayDTO.hasPaid;
 
             await _stayRepository.UpdateStay(existingStay);
         }

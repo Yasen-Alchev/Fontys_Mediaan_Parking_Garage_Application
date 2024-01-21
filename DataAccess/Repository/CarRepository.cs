@@ -26,6 +26,20 @@ public class CarRepository : ICarRepository
             return cars.ToList();
         }
     }
+    public async Task<IEnumerable<Car>> GetCarsByUserId(int userId)
+    {
+        var query = "SELECT * FROM Car WHERE user_id = @userId;";
+
+        var parameters = new DynamicParameters();
+        parameters.Add("userId", userId, DbType.Int32);
+
+        using (var connection = _context.CreateConnection())
+        {
+            var cars = await connection.QueryAsync<Car>(query, parameters);
+            return cars.ToList();
+
+        }
+    }
     public async Task<Car> GetCarById(int id)
     {
         var query = "SELECT * FROM Car WHERE id = @Id;";

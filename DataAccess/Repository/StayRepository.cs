@@ -31,7 +31,7 @@ public class StayRepository : IStayRepository
 
     public async Task<Stay> GetStay(int carId)
     {
-        var query = "SELECT S1.id, entry_time, leave_time, car_id FROM `stay` as S1 " +
+        var query = "SELECT S1.id, entry_time, leave_time, car_id, has_paid FROM `stay` as S1 " +
                     "INNER JOIN " +
                     "(SELECT MAX(id) AS id FROM `stay` WHERE car_id = @CarId) as S2 " +
                     "ON S1.id = S2.id;";
@@ -45,14 +45,15 @@ public class StayRepository : IStayRepository
 
     public async Task<Stay> CreateStay(CreateStayDTO stay)
     {
-        var query = "INSERT INTO Stay (entry_time, leave_time, car_id) " +
-                    "VALUES (@EntryTime, @LeaveTime, @CarId); " +
+        var query = "INSERT INTO Stay (entry_time, leave_time, car_id, has_paid) " +
+                    "VALUES (@EntryTime, @LeaveTime, @CarId, @HasPaid); " +
                     "SELECT LAST_INSERT_ID();";
 
         var parameters = new DynamicParameters();
         parameters.Add("EntryTime", stay.EntryTime, DbType.DateTime);
         parameters.Add("LeaveTime", stay.LeaveTime, DbType.DateTime);
         parameters.Add("CarId", stay.CarId, DbType.Int32);
+        parameters.Add("HasPaid", stay.HasPaid, DbType.Boolean);
 
         using (var connection = _context.CreateConnection())
         {
@@ -66,6 +67,7 @@ public class StayRepository : IStayRepository
                     EntryTime = stay.EntryTime,
                     LeaveTime = stay.LeaveTime,
                     CarId = stay.CarId,
+                    HasPaid = stay.HasPaid,
                 };
                 return createdStay;
             }
@@ -77,14 +79,13 @@ public class StayRepository : IStayRepository
         }
     }
 
-
-
     public async Task UpdateStay(Stay stay)
     {
         var query = "UPDATE Stay " +
                     "SET entry_time = @EntryTime, " +
                     "leave_time = @LeaveTime, " +
-                    "car_id = @CarId " +
+                    "car_id = @CarId, " +
+                    "has_paid = @HasPaid " +
                     "WHERE Id = @Id";
 
         var parameters = new DynamicParameters();
@@ -92,6 +93,7 @@ public class StayRepository : IStayRepository
         parameters.Add("EntryTime", stay.EntryTime, DbType.DateTime);
         parameters.Add("LeaveTime", stay.LeaveTime, DbType.DateTime);
         parameters.Add("CarId", stay.CarId, DbType.Int32);
+        parameters.Add("HasPaid", stay.HasPaid, DbType.Boolean);
 
         using (var connection = _context.CreateConnection())
         {

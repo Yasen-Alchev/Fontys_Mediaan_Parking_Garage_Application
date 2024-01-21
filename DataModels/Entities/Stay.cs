@@ -12,4 +12,5 @@ public class Stay
     public DateTime EntryTime { get; set; }
     public DateTime? LeaveTime { get; set; }
     public int CarId { get; set; }
+    public bool HasPaid { get; set; }
 }

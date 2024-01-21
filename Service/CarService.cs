@@ -26,6 +26,10 @@ namespace Service
         {
             return await _carRepository.GetCars();
         }
+        public async Task<IEnumerable<Car>> GetCarsByUserId(int userId)
+        {
+            return await _carRepository.GetCarsByUserId(userId);
+        }
         public async Task<Car> GetCarById(int id)
         {
             return await _carRepository.GetCarById(id);
@@ -107,8 +111,8 @@ namespace Service
             }
             else
             {
-                var leaveTime = DateTime.Now;
-                await _stayService.UpdateStay(carId, leaveTime);
+                UpdateStayDTO updateStayDTO = new UpdateStayDTO(DateTime.Now, false);
+                await _stayService.UpdateStay(carId, updateStayDTO);
                 return await _stayService.GetStay(carId);
             }
         }

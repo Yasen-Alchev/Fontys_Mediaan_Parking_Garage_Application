@@ -34,6 +34,20 @@ public class CarController : ControllerBase
         }
     }
 
+    [HttpGet("user/{userId}")]
+    public async Task<ActionResult<IEnumerable<Car>>> GetCarsByUserId(int userId)
+    {
+        try
+        {
+            var cars = await _carService.GetCarsByUserId(userId);
+            return Ok(cars);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal Server Error: {ex.Message}");
+        }
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<Car>> GetCarById(int id)
     {

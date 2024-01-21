@@ -3,7 +3,6 @@ import { UserContext } from '../contexts/UserContext';
 
 const ParkingSpotsStatus = () => {
     const { user } = useContext(UserContext);
-    console.log('User:', user);
 
     const [selectedSpot, setSelectedSpot] = useState(null);
     const [parkingSpots, setParkingSpots] = useState([]);

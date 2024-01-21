@@ -5,11 +5,21 @@ function ControlGate() {
     const [inputValue, setInputValue] = useState('');
     const [carEntered, setCarEntered] = useState(false);
     const [buttonText, setButtonText] = useState('Enter Parking');
+    const [leaveMessage, setLeaveMessage] = useState('');
     const userContext = useContext(UserContext);
 
+
     useEffect(() => {
-        setButtonText(carEntered ? 'Leave Parking' : 'Enter Parking');
-    }, [carEntered]);
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectedLicensePlate = urlParams.get('licensePlate');
+        const action = urlParams.get('action');
+
+        setInputValue(redirectedLicensePlate ? redirectedLicensePlate.toUpperCase() : '');
+        setCarEntered(redirectedLicensePlate ? true : false);
+
+        // Set the button text based on the action
+        setButtonText(action === 'leave' ? 'Leave Parking' : 'Enter Parking');
+    }, []);
 
     const handleInputChange = (e) => {
         const value = e.target.value.toUpperCase();
@@ -87,8 +97,8 @@ function ControlGate() {
                 //let stay = await carEntryResponse.json();
 
                 setCarEntered(true);
-
-            // TODO: Continue with further functionality e.g. associating a spot to the car...
+                setInputValue(''); 
+                // TODO: Continue with further functionality e.g. associating a spot to the car...
             } else {
                 console.error("Unexpected response:", carEntryResponse.status);
             }
@@ -96,7 +106,6 @@ function ControlGate() {
             console.error('Error:', error);
         }
     };
-
 
     const handleCarLeave = async () => {
         const { user } = userContext;
@@ -134,12 +143,16 @@ function ControlGate() {
             console.log('Car left successfully:', stay);
 
             setCarEntered(false);
+            setLeaveMessage('Car left successfully.'); // Set the leave message
+            setInputValue(''); // Clear the input field
+            setButtonText('Enter Parking'); // Set the button text for entering the parking
         } catch (error) {
             console.error('An error occurred while leaving the car:', error);
             // Log the entire response for more details
             console.log('Error response details:', await error.response.json());
         }
-    }
+    };
+
 
     return (
         <div className="flex h-90 items-center justify-center">
@@ -153,6 +166,7 @@ function ControlGate() {
                     onChange={handleInputChange}
                 />
                 <br />
+                {leaveMessage && <p className="text-green-600">{leaveMessage}</p>}
                 <button
                     type="button"
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"

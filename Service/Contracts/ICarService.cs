@@ -6,6 +6,7 @@ namespace Service.Contracts;
 public interface ICarService
 {
     public Task<IEnumerable<Car>> GetCars();
+    public Task<IEnumerable<Car>> GetCarsByUserId(int userId);
     public Task<Car> GetCarById(int id);
     public Task<Car> GetCarByLicensePlate(string licensePlate);
     public Task<Car> CreateCar(CreateCarDTO car);

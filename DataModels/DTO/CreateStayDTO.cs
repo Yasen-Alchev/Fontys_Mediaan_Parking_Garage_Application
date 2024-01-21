@@ -9,13 +9,15 @@ namespace DataModels.DTO;
 
 public class CreateStayDTO
 {
-    public CreateStayDTO(DateTime entryTime, DateTime? leaveTime, int carId)
+    public CreateStayDTO(DateTime entryTime, DateTime? leaveTime, int carId, bool hasPaid = false)
     {
         EntryTime = entryTime;
         LeaveTime = leaveTime;
         CarId = carId;
+        HasPaid = hasPaid;
     }
     public DateTime EntryTime { get; set; }
     public DateTime? LeaveTime { get; set; }
     public int CarId { get; set; }
+    public bool HasPaid { get; set; }
 }

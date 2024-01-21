@@ -9,5 +9,12 @@ namespace DataModels.DTO;
 
 public class UpdateStayDTO
 {
+    public UpdateStayDTO(DateTime? leaveTime, bool hasPaid)
+    {
+        LeaveTime = leaveTime;
+        this.hasPaid = hasPaid;
+    }
+
     public DateTime? LeaveTime { get; set; }
+    public bool hasPaid { get; set; }
 }
