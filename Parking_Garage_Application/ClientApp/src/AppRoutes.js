@@ -2,7 +2,7 @@ import ControlGate from "./components/ControlGate";
 import { Counter } from "./components/Counter";
 import { Home } from "./components/Home";
 import  ParkingSpotsStatus from "./components/ParkingSpotsStatus";
-import PaymentPage from "./components/PaymentPage";
+import Payment from "./components/Payment";
 import CarRegistration from "./components/CarRegistration";
 
 const AppRoutes = [
@@ -24,7 +24,7 @@ const AppRoutes = [
     },
     {
         path: '/paymentPage',
-            element: <PaymentPage />
+            element: <Payment />
     },
     {
         path: '/carRegistration',
