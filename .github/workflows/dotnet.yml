@@ -16,7 +16,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: "6.0.x"
 
       - name: Restore dependencies
         run: |
@@ -25,7 +25,7 @@ jobs:
 
       - name: Change to tests project directory
         run: cd Services.Tests
-        
+
       - name: Run unit tests
         run: dotnet test --configuration Release --logger trx --no-restore Services.Tests/*.csproj
 
@@ -34,7 +34,7 @@ jobs:
 
       - name: Set process.env.CI to false
         run: echo "process.env.CI=false" >> $GITHUB_ENV
-      
+
       - name: Install npm dependencies
         run: |
           cd Parking_Garage_Application/ClientApp
@@ -47,10 +47,10 @@ jobs:
 
       - name: Install lftp
         run: sudo apt-get install lftp -y
-          
+
       - name: Set up FTP
         run: echo "set ssl:verify-certificate no" >> $HOME/.lftprc
-        
+
       - name: Upload to FTP
         env:
           FTP_USER: i306810

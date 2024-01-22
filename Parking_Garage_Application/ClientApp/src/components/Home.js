@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import { UserContext } from '../contexts/UserContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCar, faBuilding, faCalendarAlt, faMobileAlt, faBriefcase, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 
 export class Home extends Component {
     static contextType = UserContext;
@@ -7,22 +10,56 @@ export class Home extends Component {
 
     render() {
     return (
-      <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-      </div>
+        <div className="container my-5">
+            <h1 className="text-center mb-4">Welcome to Mediaan Parking Solutions – Where Parking Meets Perfection!</h1>
+
+            <div className="text-center mb-5">
+                <p><strong>Efficient Parking for Everyone – Individuals and Businesses Alike</strong></p>
+                <p>At Mediaan, we believe in transforming the conventional parking experience into a seamless, efficient, and hassle-free endeavor. Whether you're an individual seeking a spot for your vehicle or a business in need of comprehensive parking solutions, Median is your ultimate parking partner.</p>
+            </div>
+
+            <div className="row">
+                <div className="col-md-4 mb-3 text-center">
+                    <FontAwesomeIcon icon={faCar} size="3x" />
+                    <h3>Diverse Parking Options</h3>
+                    <p>From convenient street parking to secure parking lots, Mediaan caters to all your parking needs.</p>
+                </div>
+                <div className="col-md-4 mb-3 text-center">
+                    <FontAwesomeIcon icon={faBuilding} size="3x" />
+                    <h3>Corporate Solutions</h3>
+                    <p>We offer tailored parking solutions for businesses of all sizes, ensuring your employees and clients always have a spot.</p>
+                </div>
+                <div className="col-md-4 mb-3 text-center">
+                    <FontAwesomeIcon icon={faCalendarAlt} size="3x" />
+                    <h3>Reserve Your Spot</h3>
+                    <p>Say goodbye to parking anxieties. With Mediaan, you can effortlessly reserve a parking space ahead of time, guaranteeing peace of mind.</p>
+                </div>
+            </div>
+
+            <div className="row">
+                <div className="col-md-4 mb-3 text-center">
+                    <FontAwesomeIcon icon={faMobileAlt} size="3x" />
+                    <h3>User-Friendly App</h3>
+                    <p>Our intuitive web app makes finding and booking a parking spot an easy task.</p>
+                </div>
+                <div className="col-md-4 mb-3 text-center">
+                    <FontAwesomeIcon icon={faBriefcase} size="3x" />
+                    <h3>Bespoke Services for Companies</h3>
+                    <p>Exclusive corporate accounts, bulk booking discounts, and customized parking management services.</p>
+                </div>
+                <div className="col-md-4 mb-3 text-center">
+                    <FontAwesomeIcon icon={faShieldAlt} size="3x" />
+                    <h3>Safe & Secure</h3>
+                    <p>Your vehicle's safety is our priority. Enjoy peace of mind with our secure and well-maintained parking facilities.</p>
+                </div>
+            </div>
+
+            <footer className="text-center mt-5">
+                <p>Mediaan Parking Solutions – Your Journey, Our Spaces! 🌟</p>
+            </footer>
+        </div>
     );
   }
 }
+
+

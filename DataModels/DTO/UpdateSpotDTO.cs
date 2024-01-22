@@ -10,5 +10,5 @@ public class UpdateSpotDTO
 {
     public int Id { get; set; }
     public int Status { get; set; }
-    public int CarId { get; set; }
+    public int? CarId { get; set; }
 }

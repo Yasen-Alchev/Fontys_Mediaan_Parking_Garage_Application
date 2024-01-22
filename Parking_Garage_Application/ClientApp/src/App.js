@@ -4,7 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import { Layout } from './components/Layout';
 import Cookies from 'universal-cookie';
-import { UserContext } from './contexts/UserContext';
+import { UserContext, UserProvider } from './contexts/UserContext';
 import { Home } from "./components/Home";
 
 function LoadingIndicator() {
@@ -72,6 +72,7 @@ function App() {
     }
 
     return (
+        <UserProvider>
         <Layout>
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -86,7 +87,8 @@ function App() {
                 )}
             </Routes>
 
-        </Layout>
+            </Layout>
+        </UserProvider>
     );
 }
 

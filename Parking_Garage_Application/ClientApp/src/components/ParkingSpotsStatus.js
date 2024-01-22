@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
+import LicensePlateInput from './licensePlateInput';
 
 const ParkingSpotsStatus = () => {
     const { user } = useContext(UserContext);
@@ -7,10 +8,25 @@ const ParkingSpotsStatus = () => {
     const [selectedSpot, setSelectedSpot] = useState(null);
     const [parkingSpots, setParkingSpots] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [selectedCar, setSelectedCar] = useState(null);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [isValidDateRange, setIsValidDateRange] = useState(true);
 
     const handleSpotClick = (spotId) => {
         setSelectedSpot(spotId);
     };
+
+    const handleCarSelect = (car, startDate, endDate) => {
+        setSelectedCar(car);
+        setStartDate(startDate);
+        setEndDate(endDate);
+    };
+
+    //useEffect(() => {
+    //    console.log(`Updated data: \nCar: ${selectedCar}\nStart date: ${startDate}\nEnd date: ${endDate}`);
+    //}, [selectedCar, startDate, endDate]);
+
 
     const getSpots = async () => {
         let fetchedSpots = [];
@@ -35,40 +51,81 @@ const ParkingSpotsStatus = () => {
         }
     };
 
-    const markSpotAsFree = () => {
-        if (selectedSpot !== null) {
-            console.log(`Selected Spot: ${selectedSpot}, Status: Free`);
-            setSelectedSpot(null);
-        } else {
+    async function handleUpdateClick(status) {
+        if (selectedSpot == null) {
             alert('Please select a parking spot.');
+            return;
+        }
+        if (selectedCar === null && user.role === 0) {
+            alert('No license plate selected.');
+            return;
+        }
+        if (selectedCar !== null && parkingSpots.some((spot) => spot.carId === selectedCar.id)) {
+            alert('Selected car already has a reservation');
+            return;
+        }
+        if ( status === 2) {
+            if (!await createReservation()) {
+                setSelectedSpot(null);
+                setParkingSpots(generateRealisticLayout(await getSpots()));
+                return;
+            }
+            
+        }
+        await updateSpot(status);
+        setSelectedSpot(null);
+        setParkingSpots(generateRealisticLayout(await getSpots()));
+    }
+
+    const updateSpot = async (status) => {
+        try {
+            let carid = null
+            if (selectedCar !== null) {
+                carid = status === 0 ? null : selectedCar.id;
+            }
+            const response = await fetch(`api/spot/${selectedSpot}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: selectedSpot, status: status, carid: carid }),
+            });
+
+            console.log('Updated spot');
+        } catch (error) {
+            console.error('Error:', error);
         }
     };
 
-    const markSpotAsOccupied = () => {
-        if (selectedSpot !== null) {
-            console.log(`Selected Spot: ${selectedSpot}, Status: Occupied`);
-            setSelectedSpot(null);
-        } else {
-            alert('Please select a parking spot.');
-        }
-    };
+    async function createReservation() {
+        try {
+            const reservationData = {
+                carId: selectedCar.id,
+                spotId: selectedSpot,
+                startDate: startDate,
+                endDate: endDate
+            };
+            const reservationResponse = await fetch(`/api/reservation`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reservationData),
+            });
 
-    const markSpotAsReserved = () => {
-        if (selectedSpot !== null) {
-            console.log(`Selected Spot: ${selectedSpot}, Status: Reserved`);
-            setSelectedSpot(null);
-        } else {
-            alert('Please select a parking spot.');
+            if (reservationResponse.ok) {
+                alert('Reservation created successfully!');
+                return true;
+            } else {
+                const errorData = await reservationResponse.json();
+                alert(`Failed to create reservation: ${errorData.message}`);
+            }
+        } catch (error) {
+            console.error('Reservation creation error:', error);
+            alert('An error occurred while creating the reservation.');
         }
-    };
 
-    const reserveSpot = () => {
-        if (selectedSpot !== null) {
-            console.log(`Selected Spot: ${selectedSpot}, User reserved this spot`);
-            setSelectedSpot(null);
-        } else {
-            alert('Please select a parking spot.');
-        }
+        return false;
     }
 
     const generateRealisticLayout = (fetchedParkingSpots) => {
@@ -83,16 +140,17 @@ const ParkingSpotsStatus = () => {
                     fetchedParkingSpots[spotIndex++].position = position;
                 }
                 //else: car line -> empty
-                if (spotIndex == fetchedParkingSpots.length) {
+                if (spotIndex === fetchedParkingSpots.length) {
                     return fetchedParkingSpots;
                 }
             }
         }
         return fetchedParkingSpots;
     };
+    
 
     const getStatusColor = (status, role) => {
-        if (role == 1) {
+        if (role === 1) {
             switch (status) {
                 case 0:
                     return 'white';
@@ -121,11 +179,25 @@ const ParkingSpotsStatus = () => {
             const fetchedParkingSpots = await getSpots();
             const realisticLayout = generateRealisticLayout(fetchedParkingSpots);
             setParkingSpots(realisticLayout);
+            console.log(realisticLayout);
             setDataLoaded(true);
         };
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        if (startDate && endDate) {
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+
+            if (end <= start) {
+                setIsValidDateRange(false);
+            } else {
+                setIsValidDateRange(true);
+            }
+        }
+    }, [startDate, endDate]);
 
     if (!dataLoaded) {
         return <p>Loading...</p>;
@@ -139,7 +211,7 @@ const ParkingSpotsStatus = () => {
     return (
         <div className="flex h-90 items-center justify-center">
             <div className="text-center">
-                {user.role == 1
+                {user.role === 1
                     ? 
                         <>
                             <h1 className="text-4xl mb-6">Parking Spots Status Map</h1>
@@ -177,40 +249,48 @@ const ParkingSpotsStatus = () => {
 
                 </div>
                 <div style={{ marginTop: '20px' }}>
-                    {user.role == 1
+                    {user.role === 1
                         ? 
                         <>
                                 <button
                                 type="button"
                                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                onClick={markSpotAsFree}
+                                onClick={() => handleUpdateClick(0)}
                             >
                                 Free
                             </button>
                             <button
                                 type="button"
                                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                onClick={markSpotAsOccupied}
+                                onClick={() => handleUpdateClick(1)}
                             >
                                 Occupied
                             </button>
                             <button
                                 type="button"
                                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                onClick={markSpotAsReserved}
+                                onClick={() => handleUpdateClick(2)}
                             >
                                 Reserved
                                 </button>
                         </>
 
                         :
+                        <>
+                            <LicensePlateInput onCarSelect={handleCarSelect} />
+                            {!isValidDateRange && (
+                                <p className="text-red-500">End date must be later than the start date.</p>
+                            )}
+
                         <button
                             type="button"
+                            disabled={!isValidDateRange}
                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                            onClick={reserveSpot}
+                            onClick={() => handleUpdateClick(2)}
                         >
                             Reserve Spot
-                        </button>
+                            </button>
+                        </>
                     }
                 </div>
             </div>

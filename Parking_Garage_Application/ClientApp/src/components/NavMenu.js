@@ -23,7 +23,7 @@ export class NavMenu extends Component {
         });
     }
 
-    render() {
+  render() {
         const { user } = this.context;
 
         return (
@@ -39,16 +39,13 @@ export class NavMenu extends Component {
                             {user && Object.keys(user).length ?
                                 <>
                                     <NavItem>
-                                        <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-                                    </NavItem>
-                                    <NavItem>
                                         <NavLink tag={Link} className="text-dark" to="/controlGate">Control Gate</NavLink>
                                     </NavItem>
                                     <NavItem>
                                         <NavLink tag={Link} className="text-dark" to="/parkingSpotsStatus">Parking Spots</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink tag={Link} className="text-dark" to="/payment">Payment</NavLink>
+                                        <NavLink tag={Link} className="text-dark" to="/paymentPage">Pay</NavLink>
                                     </NavItem>
                                 </>
                                 :
